@@ -1,5 +1,5 @@
 #include <DxLib.h>
-#include "SceneMng.h"
+#include <WindowsProject1/Scene/SceneMng.h>
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

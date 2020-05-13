@@ -72,6 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\DxLib;$(SolutionDir);$(IncludePath)</IncludePath>
+    <LibraryPath>D:\DxLib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -154,29 +156,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Attack.h" />
-    <ClInclude Include="BaseScene.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Obj.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="SceneMng.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="WindowsProject1.h" />
+    <ClInclude Include="UNIT\Attack.h" />
+    <ClInclude Include="Scene\BaseScene.h" />
+    <ClInclude Include="UNIT\Enemy.h" />
+    <ClInclude Include="common\framework.h" />
+    <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="UNIT\Obj.h" />
+    <ClInclude Include="UNIT\Player.h" />
+    <ClInclude Include="common\Resource.h" />
+    <ClInclude Include="Scene\SceneMng.h" />
+    <ClInclude Include="common\targetver.h" />
+    <ClInclude Include="common\Vector2.h" />
+    <ClInclude Include="common\WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Attack.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="UNIT\Attack.cpp" />
+    <ClCompile Include="UNIT\Enemy.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Obj.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SceneMng.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="WindowsProject1.cpp" />
+    <ClCompile Include="UNIT\Obj.cpp" />
+    <ClCompile Include="UNIT\Player.cpp" />
+    <ClCompile Include="Scene\SceneMng.cpp" />
+    <ClCompile Include="common\Vector2.cpp" />
+    <ClCompile Include="common\WindowsProject1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc" />
