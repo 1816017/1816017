@@ -8,7 +8,8 @@ Enemy::Enemy(Vector2 _pos, Vector2 _size)
 {
 	pos = _pos;
 	size = _size;
-	HP = 1;
+	HP = 5;
+	enemyImage = LoadGraph("image/enemy1.png");
 }
 
 Enemy::~Enemy()
@@ -18,7 +19,7 @@ Enemy::~Enemy()
 void Enemy::UpData(std::vector<shared_Obj> objList)
 {
 	Draw();
-	pos.x--;
+	pos.x -= 2;
 
 	if (DeathPur())
 	{
@@ -39,6 +40,25 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 	if (pos.x + size.x > p_pos.x - p_size.x && pos.x - size.x < p_pos.x + p_size.x
 		&& pos.y + size.y > p_pos.y - p_size.y && pos.y - size.y < p_pos.y + p_size.y)
 	{
+		pos.x += 100;
+		HP--;
+	}
+
+	Vector2 a_pos;
+	Vector2 a_size;
+	for (auto data : objList)
+	{
+		if (data->GetUnitType() == UNIT::ATTACK)
+		{
+			a_pos = data->GetPos();
+			a_size = data->GetSize();
+		}
+	}
+
+	if (pos.x + size.x > a_pos.x - a_size.x && pos.x - size.x < a_pos.x + a_size.x + 20
+		&& pos.y + size.y > a_pos.y - a_size.y && pos.y - size.y < a_pos.y + a_size.y)
+	{
+		pos.x += 100;
 		HP--;
 	}
 	
@@ -52,5 +72,5 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 
 void Enemy::Draw(void)
 {
-	DrawBox(pos.x - size.x, pos.y - size.y, pos.x + size.x, pos.y + size.y, 0xffff00, true);
+	DrawGraph(pos.x - size.x, pos.y - size.y, enemyImage, true);
 }

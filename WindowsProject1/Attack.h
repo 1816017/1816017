@@ -1,22 +1,17 @@
 #pragma once
 #include "Obj.h"
-class Player :
+class Attack :
 	public Obj
 {
 public:
-	Player();
-	Player(Vector2 _pos, Vector2 _size);
-	~Player();
+	Attack();
+	Attack(Vector2 _pos, Vector2 _size);
+	~Attack();
 
 	UNIT GetUnitType(void) { return UNIT::PLAYER; }
 	void UpData(std::vector<shared_Obj> objList);
 	Vector2 GetPos(void) { return pos; }
 	Vector2 GetSize(void) { return size; }
 	void Draw(void);
-
-private:
-	int playerImage;
-
-	int cnt;
 };
 

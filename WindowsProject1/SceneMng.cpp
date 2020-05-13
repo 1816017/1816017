@@ -18,7 +18,7 @@ void SceneMng::Ran(void)
 	}
 }
 
-SceneMng::SceneMng() : ScreenSize{ 800,500 }
+SceneMng::SceneMng() : ScreenSize{ 600,300 }
 {
 }
 

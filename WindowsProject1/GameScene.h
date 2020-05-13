@@ -21,5 +21,8 @@ private:
 
 	int cnt;
 
+	bool keyFlag;
+	bool keyFlagOld;
+
 	sharedVec objList;
 };

@@ -9,6 +9,7 @@ enum class UNIT
 {
 	PLAYER,	// ÕÆ¯Ä:ÌßÚ²Ô°
 	ENEMY,  // ÕÆ¯Ä:´ÈÐ°
+	ATTACK,	// ÕÆ¯Ä:±À¯¸
 	MAX
 };
 

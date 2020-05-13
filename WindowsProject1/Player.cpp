@@ -11,6 +11,7 @@ Player::Player(Vector2 _pos, Vector2 _size)
 
 	HP = 10;
 	cnt = 0;
+	playerImage = LoadGraph("image/player1.png");
 }
 
 Player::~Player()
@@ -46,7 +47,7 @@ void Player::UpData(std::vector<shared_Obj> objList)
 		}
 	}
 
-	if (pos.x + size.x > e_pos.x - e_size.x && pos.x - size.x < e_pos.x + e_size.x
+	if (pos.x + size.x+1 > e_pos.x - e_size.x && pos.x - size.x < e_pos.x + e_size.x
 		&& pos.y + size.y > e_pos.y - e_size.y && pos.y - size.y < e_pos.y + e_size.y)
 	{
 		HP--;
@@ -64,5 +65,5 @@ void Player::UpData(std::vector<shared_Obj> objList)
 
 void Player::Draw(void)
 {
-	DrawBox(pos.x - size.x, pos.y - size.y, pos.x + size.x, pos.y + size.y, 0xff0000, true);
+	DrawGraph(pos.x - size.x, pos.y - size.y, playerImage, true);
 }

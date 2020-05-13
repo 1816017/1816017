@@ -13,5 +13,8 @@ public:
 	Vector2 GetPos(void) { return pos; }
 	Vector2 GetSize(void) { return size; }
 	void Draw(void);
+
+private:
+	int enemyImage;
 };
 
