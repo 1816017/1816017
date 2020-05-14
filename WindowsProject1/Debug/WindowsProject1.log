@@ -1,2 +1,11 @@
 ﻿  GameScene.cpp
+  SceneMng.cpp
+  Attack.cpp
+  Enemy.cpp
+  Obj.cpp
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\Scene\SceneMng.cpp(38,12): warning C4305:  'return': 'int' から 'bool' へ切り詰めます。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Obj.cpp(23,30): warning C4018:  '<=': signed と unsigned の数値を比較しようとしました。
+  Player.cpp
+  コードを生成中...
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Obj.cpp(31,17): warning C4018:  '>=': signed と unsigned の数値を比較しようとしました。
   WindowsProject1.vcxproj -> C:\Users\ui\source\repos\WindowsProject1\Debug\WindowsProject1.exe

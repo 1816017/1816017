@@ -10,8 +10,7 @@ Player::Player(Vector2 _pos, Vector2 _size)
 	size = _size;
 
 	HP = 10;
-	cnt = 0;
-	playerImage = LoadGraph("image/player1.png");
+	Init();
 }
 
 Player::~Player()
@@ -22,14 +21,7 @@ void Player::UpData(std::vector<shared_Obj> objList)
 {
 	Draw();
 
-	if (CheckHitKey(KEY_INPUT_RIGHT))
-	{
-		pos.x += 4;
-	}
-	if (CheckHitKey(KEY_INPUT_LEFT))
-	{
-		pos.x -= 4;
-	}
+	AnimKey(ANIM::WORK);
 
 	if (DeathPur())
 	{
@@ -58,12 +50,20 @@ void Player::UpData(std::vector<shared_Obj> objList)
 		alive = false;
 	}
 
-	cnt++;
-
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "HP : %d", HP);
+	DrawFormatString(50, 0, GetColor(255, 255, 255), "posY : %d", pos.y);
 }
 
 void Player::Draw(void)
 {
-	DrawGraph(pos.x - size.x, pos.y - size.y, playerImage, true);
+}
+
+bool Player::Init(void)
+{
+	AnimVector data;
+	data.reserve(2);
+	data.emplace_back(IMAGE_ID("player")[0], 10);
+	data.emplace_back(IMAGE_ID("player")[0], 20);
+	SetAnim(ANIM::WORK, data);
+	return true;
 }

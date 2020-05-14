@@ -31,6 +31,7 @@ private:
 	~SceneMng();
 
 	bool SysInit(void);		// ¼½ÃÑˆ—
+	void ImageID(void);
 
 	static std::unique_ptr<SceneMng, SceneMngDelete> s_Instance;
 	unique_Base activScene;		// SceneˆÚ“®ˆ—

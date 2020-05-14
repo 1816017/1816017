@@ -15,6 +15,6 @@ public:
 	void Draw(void);
 
 private:
-	int enemyImage;
+	bool Init(void);
 };
 

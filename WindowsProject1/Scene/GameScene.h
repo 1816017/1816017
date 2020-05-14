@@ -19,10 +19,8 @@ private:
 
 	void Draw(void);
 
-	int cnt;
-	int bgImage;
-
 	Vector2 bgpos;
+	Vector2 _bgpos;
 
 	bool keyFlag;
 	bool keyFlagOld;

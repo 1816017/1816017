@@ -9,7 +9,7 @@ Enemy::Enemy(Vector2 _pos, Vector2 _size)
 	pos = _pos;
 	size = _size;
 	HP = 5;
-	enemyImage = LoadGraph("image/enemy1.png");
+	Init();
 }
 
 Enemy::~Enemy()
@@ -20,6 +20,8 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 {
 	Draw();
 	pos.x -= 2;
+
+	AnimKey(ANIM::WORK);
 
 	if (DeathPur())
 	{
@@ -72,5 +74,14 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 
 void Enemy::Draw(void)
 {
-	DrawGraph(pos.x - size.x, pos.y - size.y, enemyImage, true);
+}
+
+bool Enemy::Init(void)
+{
+	AnimVector data;
+	data.reserve(2);
+	data.emplace_back(IMAGE_ID("enemy")[0], 20);
+	data.emplace_back(IMAGE_ID("enemy")[1], 40);
+	SetAnim(ANIM::WORK, data);
+	return true;
 }

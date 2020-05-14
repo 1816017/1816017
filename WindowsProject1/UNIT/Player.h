@@ -15,8 +15,6 @@ public:
 	void Draw(void);
 
 private:
-	int playerImage;
-
-	int cnt;
+	bool Init(void);
 };
 

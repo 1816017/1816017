@@ -1,6 +1,7 @@
 #include <WindowsProject1/Scene/SceneMng.h>
 #include <DxLib.h>
 #include <WindowsProject1/Scene/GameScene.h>
+#include <WindowsProject1/common/Image.h>
 
 std::unique_ptr<SceneMng, SceneMng::SceneMngDelete> SceneMng::s_Instance(new SceneMng);
 
@@ -9,6 +10,7 @@ void SceneMng::Ran(void)
 {
 	SetBackgroundColor(0, 0, 0);
 	SysInit();
+	ImageID();
 	activScene = std::make_unique<GameScene>();
 	while ((ProcessMessage() == 0) && (CheckHitKey(KEY_INPUT_ESCAPE) == 0))
 	{
@@ -38,4 +40,12 @@ bool SceneMng::SysInit(void)
 	SetDrawScreen(DX_SCREEN_BACK);	// ‚Ð‚Æ‚Ü‚¸ÊÞ¯¸ÊÞ¯Ì§‚É•`‰æ
 
 	return true;
+}
+
+void SceneMng::ImageID(void)
+{
+	lpImage.GetID("bg", "image/bg1.png", { 1,1 }, { 600,300 });
+	lpImage.GetID("tile", "image/tile1.png", { 1,1 }, { 60,60 });
+	lpImage.GetID("enemy", "image/enemy.png", { 1,2 }, { 60,40 });
+	lpImage.GetID("player", "image/player1.png", { 1,1 }, { 60,80 });
 }

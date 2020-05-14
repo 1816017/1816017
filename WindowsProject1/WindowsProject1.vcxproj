@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="common\Image.h" />
     <ClInclude Include="UNIT\Attack.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="UNIT\Enemy.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="common\WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="common\Image.cpp" />
     <ClCompile Include="UNIT\Attack.cpp" />
     <ClCompile Include="UNIT\Enemy.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
