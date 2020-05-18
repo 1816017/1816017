@@ -4,11 +4,13 @@ Enemy::Enemy()
 {
 }
 
-Enemy::Enemy(Vector2 _pos, Vector2 _size)
+Enemy::Enemy(Vector2 position, Vector2 size, int hitpoint, int strength)
 {
-	pos = _pos;
-	size = _size;
-	HP = 5;
+	com.pos = position;
+	com.size = size;
+	eData.HP = hitpoint;
+	eData.STR = strength;
+
 	Init();
 }
 
@@ -18,46 +20,53 @@ Enemy::~Enemy()
 
 void Enemy::UpData(std::vector<shared_Obj> objList)
 {
-	Draw();
+	(*input).UpData();
+
 
 	if (DeathPur())
 	{
 		return;
 	}
 
-	Vector2 p_pos;
-	Vector2 p_size;
 	for (auto data : objList)
 	{
 		if (data->GetUnitType() == UNIT::PLAYER)
 		{
-			p_pos = data->GetPos();
-			p_size = data->GetSize();
+			pData = data->GetPStatas();
+			pCom = data->GetCom();
 		}
 	}
 
-	if (pos.x + size.x > p_pos.x - p_size.x && pos.x - size.x < p_pos.x + p_size.x
-		&& pos.y + size.y > p_pos.y - p_size.y && pos.y - size.y < p_pos.y + p_size.y)
+	AnimKey(ANIM::RUN);
+
+	if (pCom.alive)
 	{
-		pos.x += 100;
-		HP--;
+		com.pos.x -= 2;
+	}
+
+	if (com.pos.x + com.size.x > pCom.pos.x + 20 && com.pos.x < pCom.pos.x + pCom.size.x - 20
+		&& com.pos.y + com.size.y > pCom.pos.y && com.pos.y < pCom.pos.y + pCom.size.y)
+	{
+		com.pos.x += 100;
+		if ((*input).State(INPUT_ID::SPACE).first)
+		{
+			eData.HP-= pData.STR;
+		}
 	}
 	
-	if (HP == 0)
+	if (eData.HP == 0)
 	{
-		alive = false;
+		com.alive = false;
 	}
 
-	DrawFormatString(0, 30, GetColor(255, 255, 255), "HP : %d", HP);
-}
-
-void Enemy::Draw(void)
-{
+	DrawFormatString(0, 30, GetColor(255, 255, 255), "HP : %d", eData.HP);
 }
 
 bool Enemy::Init(void)
 {
-	AnimVector data;
-
+	data.reserve(2);
+	data.emplace_back(IMAGE_ID("enemy")[0], 10);
+	data.emplace_back(IMAGE_ID("enemy")[1], 20);
+	SetAnim(ANIM::RUN, data);
 	return true;
 }

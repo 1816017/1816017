@@ -4,12 +4,15 @@ Player::Player()
 {
 }
 
-Player::Player(Vector2 _pos, Vector2 _size)
+Player::Player(Vector2 position, Vector2 size, int hitpoint, int strength)
 {
-	pos = _pos;
-	size = _size;
+	com.pos = position;
+	com.size = size;
+	pData.HP = hitpoint;
+	pData.STR = strength;
 
-	HP = 10;
+	attackFlag = false;
+	cnt = 0;
 	Init();
 }
 
@@ -19,48 +22,67 @@ Player::~Player()
 
 void Player::UpData(std::vector<shared_Obj> objList)
 {
-	Draw();
+	(*input).UpData();
 
-	// AnimKey(ANIM::RUN);
-	AnimKey(ANIM::ATTACK);
+	Control();
 
 	if (DeathPur())
 	{
 		return;
 	}
-
-	/*Vector2 e_pos;
-	Vector2 e_size;
+	
 	for (auto data : objList)
 	{
 		if (data->GetUnitType() == UNIT::ENEMY)
 		{
-			e_pos = data->GetPos();
-			e_size = data->GetSize();
+			eData = data->GetEStatas();
+			eCom = data->GetCom();
 		}
 	}
 
-	if (pos.x + size.x+1 > e_pos.x - e_size.x && pos.x - size.x < e_pos.x + e_size.x
-		&& pos.y + size.y > e_pos.y - e_size.y && pos.y - size.y < e_pos.y + e_size.y)
+	if (com.pos.x + com.size.x - 19 > eCom.pos.x && com.pos.x + 20 < eCom.pos.x + eCom.size.x
+		&& com.pos.y + com.size.y > eCom.pos.y && com.pos.y < eCom.pos.y + eCom.size.y)
 	{
-		HP--;
-	}*/
-
-	if (HP == 0)
-	{
-		alive = false;
+		pData.HP -= eData.STR;
 	}
 
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "HP : %d", HP);
+	if (pData.HP == 0)
+	{
+		com.alive = false;
+	}
+
+	cnt++;
+
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "HP : %d", pData.HP);
 }
 
-void Player::Draw(void)
+void Player::Control(void)
 {
+	if ((*input).State(INPUT_ID::SPACE).first)
+	{
+		attackFlag = true;
+		cnt = 0;
+	}
+
+	if (attackFlag)
+	{
+		if (cnt >= 0 && cnt < 40)
+		{
+			AnimKey(ANIM::ATTACK);
+		}
+		else
+		{
+			attackFlag = false;
+		}
+	}
+	else
+	{
+		AnimKey(ANIM::RUN);
+	}
 }
 
 bool Player::Init(void)
 {
-	AnimVector data;
 	data.reserve(6);
 	data.emplace_back(IMAGE_ID("play_run")[0], 10);
 	data.emplace_back(IMAGE_ID("play_run")[1], 20);
@@ -70,19 +92,12 @@ bool Player::Init(void)
 	data.emplace_back(IMAGE_ID("play_run")[5], 60);
 	SetAnim(ANIM::RUN, data);
 
-	data.reserve(12);
-	data.emplace_back(IMAGE_ID("play_attack")[0], 10);
-	data.emplace_back(IMAGE_ID("play_attack")[1], 20);
-	data.emplace_back(IMAGE_ID("play_attack")[2], 30);
-	data.emplace_back(IMAGE_ID("play_attack")[3], 40);
-	data.emplace_back(IMAGE_ID("play_attack")[4], 50);
-	data.emplace_back(IMAGE_ID("play_attack")[5], 60);
-	data.emplace_back(IMAGE_ID("play_attack")[6], 70);
-	data.emplace_back(IMAGE_ID("play_attack")[7], 80);
-	data.emplace_back(IMAGE_ID("play_attack")[8], 90);
-	data.emplace_back(IMAGE_ID("play_attack")[9], 100);
-	data.emplace_back(IMAGE_ID("play_attack")[10], 110);
-	data.emplace_back(IMAGE_ID("play_attack")[11], 120);
+	data.reserve(5);
+	data.emplace_back(IMAGE_ID("play_attack")[6], 10);
+	data.emplace_back(IMAGE_ID("play_attack")[7], 20);
+	data.emplace_back(IMAGE_ID("play_attack")[8], 30);
+	data.emplace_back(IMAGE_ID("play_attack")[9], 40);
+	data.emplace_back(IMAGE_ID("play_attack")[10], 50);
 	SetAnim(ANIM::ATTACK , data);
 	return true;
 }

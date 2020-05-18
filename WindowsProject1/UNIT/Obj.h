@@ -6,6 +6,7 @@
 #include <WindowsProject1/common/Vector2.h>
 #include <DxLib.h>
 #include <WindowsProject1/common/Image.h>
+#include<WindowsProject1/Input/KeyState.h>
 
 enum class UNIT
 {
@@ -19,8 +20,25 @@ enum class ANIM
 	NORMAL,
 	RUN,
 	ATTACK,
-	WORK,	// ±ÆÒ°¼®İ:ˆÚ“®
+	JUMP,
 	MAX
+};
+
+typedef struct COMMON {
+	Vector2 pos;
+	Vector2 size;
+	int alive;
+	int death;
+};
+
+typedef struct PLAYER_STATAS {
+	int HP;
+	int STR;
+};
+
+typedef struct ENEMY_STATAS {
+	int HP;
+	int STR;
 };
 
 class Obj;
@@ -36,10 +54,11 @@ public:
 	void Draw(void);	// •`‰æŠÖ”
 	virtual UNIT GetUnitType(void) = 0;		// ÕÆ¯Ä‚ÌÀ²Ìßæ“¾
 	virtual void UpData(std::vector<shared_Obj> objList) = 0;	// ±¯ÌßÃŞ°ÄŠÖ”
-	bool isAlive(void) { return alive; }	// €–SŠÖ”
-	bool isDeath(void) { return death; }	// Á–ÅŠÖ”
-	virtual Vector2 GetPos(void) { return pos; }	// ÕÆ¯Ä‚ÌÎß¼Ş¼®İæ“¾
-	virtual Vector2 GetSize(void) { return size; }	// ÕÆ¯Ä‚ÌÄ»²½Şæ“¾
+	bool isAlive(void) { return com.alive; }	// €–SŠÖ”
+	bool isDeath(void) { return com.death; }	// Á–ÅŠÖ”
+	virtual COMMON GetCom(void) { return com; }
+	virtual PLAYER_STATAS GetPStatas(void) { return pData; }
+	virtual ENEMY_STATAS GetEStatas(void) { return eData; }
 	bool AnimKey(ANIM key);		// ±ÆÒ°¼®İ·°‚Ì¾¯ÄŠÖ”
 	const ANIM AnimKey(void) const;			//±ÆÒ°¼®İ·°‚Ìæ“¾
 
@@ -50,18 +69,18 @@ private:
 
 protected:
 	bool SetAnim(const ANIM key, AnimVector& data);		// ±ÆÒ°¼®İ¾¯Ä
-	void SetAlive(bool _alive) { alive = _alive; }		// alive‚Ì¾¯ÄŠÖ”
-	void SetDeath(bool _death) { death = _death; }		// death‚Ì¾¯ÄŠÖ”
+	void SetAlive(bool alive) { com.alive = alive; }		// alive‚Ì¾¯ÄŠÖ”
+	void SetDeath(bool death) { com.death = death; }		// death‚Ì¾¯ÄŠÖ”
 	bool DeathPur(void);	// ¶€ˆ—
 
-	Vector2 pos;	// ÕÆ¯Ä‚ÌÎß¼Ş¼®İ
-	Vector2 size;	// ÕÆ¯Ä‚Ì»²½Ş
-
-	int HP; // ‘Ì—Í
 	int animcount;	// ±ÆÒ°¼®İ¶³İÄ”
-	int alive;
-	int death;
+
+	AnimVector data;
+	PLAYER_STATAS pData;
+	ENEMY_STATAS eData;
+	COMMON com;
 
 	std::list<shared_Obj> objList;	// Ø½Ä‰»
+	std::unique_ptr<InputState> input;		// ·°ˆ—
 };
 

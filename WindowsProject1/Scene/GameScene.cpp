@@ -16,6 +16,8 @@ GameScene::~GameScene()
 
 unique_Base GameScene::UpData(unique_Base own)
 {
+	(*input).UpData();
+
 	for (auto data : objList)
 	{
 		data->UpData(objList);
@@ -35,12 +37,17 @@ unique_Base GameScene::UpData(unique_Base own)
 
 bool GameScene::Init(void)
 {
-	objList.emplace_back(new Player(Vector2(0, 250), Vector2(50, 37)));
-	// objList.emplace_back(new Enemy(Vector2(600, 220), Vector2(30, 20)));
+	objList.emplace_back(new Player(Vector2(0, 228), Vector2(100, 72), 10, 1));
+	objList.emplace_back(new Enemy(Vector2(400, 260), Vector2(30, 40), 5, 1));
+	// objList.emplace_back(new Enemy(Vector2(400, 135), Vector2(171, 165)));
 
 	return true;
 }
 
 void GameScene::Draw(void)
 {
+	if ((*input).State(INPUT_ID::UP).first == 1 && (*input).State(INPUT_ID::UP).second == 0)
+	{
+		objList.emplace_back(new Enemy(Vector2(400, 260), Vector2(30, 40), 5, 1));
+	}
 }

@@ -2,11 +2,13 @@
 
 Obj::Obj()
 {
-	alive = true;
-	death = false;
+	com.alive = true;
+	com.death = false;
 	animkey = ANIM::NORMAL;
 	animcount = 0;
 	animframe = 0;
+
+	input = std::make_unique<KeyState>();
 }
 
 Obj::~Obj()
@@ -34,7 +36,7 @@ void Obj::Draw(void)
 			animframe = 0;
 		}
 	}
-	DrawGraph(pos.x, pos.y, AnimMap[animkey][animframe].first, true);
+	DrawGraph(com.pos.x, com.pos.y, AnimMap[animkey][animframe].first, true);
 	animcount++;
 }
 
@@ -65,13 +67,13 @@ bool Obj::SetAnim(const ANIM key, AnimVector& data)
 
 bool Obj::DeathPur(void)
 {
-	if (alive)
+	if (com.alive)
 	{
 		return false;
 	}
-	if (!alive)
+	if (!com.alive)
 	{
-		death = true;
+		com.death = true;
 	}
 	return false;
 }

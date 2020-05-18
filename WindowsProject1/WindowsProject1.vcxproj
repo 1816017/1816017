@@ -157,6 +157,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="common\Image.h" />
+    <ClInclude Include="Input\InputState.h" />
+    <ClInclude Include="Input\INPUT_ID.h" />
+    <ClInclude Include="Input\KeyState.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="UNIT\Enemy.h" />
     <ClInclude Include="common\framework.h" />
@@ -171,6 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\Image.cpp" />
+    <ClCompile Include="Input\InputState.cpp" />
+    <ClCompile Include="Input\INPUT_ID.cpp" />
+    <ClCompile Include="Input\KeyState.cpp" />
     <ClCompile Include="UNIT\Enemy.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="main.cpp" />

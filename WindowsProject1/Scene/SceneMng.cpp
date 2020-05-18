@@ -43,6 +43,9 @@ bool SceneMng::SysInit(void)
 
 void SceneMng::ImageID(void)
 {
-	lpImage.GetID("play_run", "image/run.png", { 6,1 }, { 50,37 });
-	lpImage.GetID("play_attack", "image/attack.png", { 7,2 }, { 50,37 });
+	lpImage.GetID("play_run", "image/run.png", { 6,1 }, { 100,72 });
+	lpImage.GetID("play_attack", "image/attack.png", { 7,2 }, { 100,72 });
+	lpImage.GetID("jump", "image/jump.png", { 7,2 }, { 100,72 });
+	lpImage.GetID("enemy", "image/enemy.png", { 1,2 }, { 60,40 });
+	lpImage.GetID("boss", "image/BOSS.png", { 1,1 }, { 171,165 });
 }
