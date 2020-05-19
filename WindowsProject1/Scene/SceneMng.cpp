@@ -1,6 +1,8 @@
 #include <WindowsProject1/Scene/SceneMng.h>
 #include <DxLib.h>
+#include <WindowsProject1/Scene/TitleScene.h>
 #include <WindowsProject1/Scene/GameScene.h>
+#include <WindowsProject1/Scene/ResultScene.h>
 #include <WindowsProject1/common/Image.h>
 
 std::unique_ptr<SceneMng, SceneMng::SceneMngDelete> SceneMng::s_Instance(new SceneMng);
@@ -10,7 +12,7 @@ void SceneMng::Ran(void)
 	SetBackgroundColor(0, 0, 0);
 	SysInit();
 	ImageID();
-	activScene = std::make_unique<GameScene>();
+	activScene = std::make_unique<ResultScene>();
 	while ((ProcessMessage() == 0) && (CheckHitKey(KEY_INPUT_ESCAPE) == 0))
 	{
 		ClearDrawScreen();
@@ -43,9 +45,13 @@ bool SceneMng::SysInit(void)
 
 void SceneMng::ImageID(void)
 {
+	lpImage.GetID("bg", "image/bg1.png", { 1,1 }, { 600,300 });
 	lpImage.GetID("play_run", "image/run.png", { 6,1 }, { 100,72 });
 	lpImage.GetID("play_attack", "image/attack.png", { 7,2 }, { 100,72 });
 	lpImage.GetID("jump", "image/jump.png", { 7,2 }, { 100,72 });
 	lpImage.GetID("enemy", "image/enemy.png", { 1,2 }, { 60,40 });
 	lpImage.GetID("boss", "image/BOSS.png", { 1,1 }, { 171,165 });
+	lpImage.GetID("òg", "image/window.png", { 1,1 }, { 200,59 });
+	lpImage.GetID("ï∂éö", "image/alphabet.png", { 7,4 }, { 15,21 });
+	lpImage.GetID("êîéö", "image/number.png", { 10,1 }, { 15,21 });
 }

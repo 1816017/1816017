@@ -1,9 +1,7 @@
 #include "GameScene.h"
 #include <algorithm>
-#include "DxLib.h"
 #include <WindowsProject1/UNIT/Player.h>
 #include <WindowsProject1/UNIT/Enemy.h>
-#include <WindowsProject1/common/Image.h>
 
 GameScene::GameScene()
 {

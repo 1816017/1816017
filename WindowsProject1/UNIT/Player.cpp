@@ -53,6 +53,11 @@ void Player::UpData(std::vector<shared_Obj> objList)
 
 	cnt++;
 
+	if ((*input).State(INPUT_ID::DOWN).first == 1 && (*input).State(INPUT_ID::DOWN).second == 0)
+	{
+		pData.HP++;
+	}
+
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "HP : %d", pData.HP);
 }
 

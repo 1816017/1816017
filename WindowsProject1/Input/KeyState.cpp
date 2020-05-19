@@ -6,6 +6,7 @@ KeyState::KeyState()
 	keyTblDef = {		// ‰Šú‰»Ø½Ä
 		KEY_INPUT_SPACE,
 		KEY_INPUT_UP,
+		KEY_INPUT_DOWN,
 	};
 	FILE* file;
 	fopen_s(&file, "data/key.dat", "rb");

@@ -160,7 +160,9 @@
     <ClInclude Include="Input\InputState.h" />
     <ClInclude Include="Input\INPUT_ID.h" />
     <ClInclude Include="Input\KeyState.h" />
+    <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\BaseScene.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="UNIT\Enemy.h" />
     <ClInclude Include="common\framework.h" />
     <ClInclude Include="Scene\GameScene.h" />
@@ -177,6 +179,8 @@
     <ClCompile Include="Input\InputState.cpp" />
     <ClCompile Include="Input\INPUT_ID.cpp" />
     <ClCompile Include="Input\KeyState.cpp" />
+    <ClCompile Include="Scene\ResultScene.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="UNIT\Enemy.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="main.cpp" />

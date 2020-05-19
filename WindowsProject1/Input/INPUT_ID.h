@@ -4,6 +4,7 @@ enum class INPUT_ID
 {
 	SPACE,
 	UP,
+	DOWN,
 	MAX
 };
 

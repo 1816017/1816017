@@ -1,10 +1,14 @@
 #pragma once
 #include <memory>
+#include <DxLib.h>
 #include <WindowsProject1/Input/KeyState.h>
+#include <WindowsProject1/common/Image.h>
 
 enum class SCENE_ID // enum¸×½
 {
+	TITLE,
 	GAME,	// GameScene
+	RESULT,
 	MAX
 };
 
