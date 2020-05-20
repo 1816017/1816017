@@ -4,9 +4,7 @@
 
 ResultScene::ResultScene()
 {
-	x = 0;
-	y = 0;
-	z = 0;
+	Load();
 }
 
 ResultScene::~ResultScene()
@@ -18,62 +16,146 @@ unique_Base ResultScene::UpData(unique_Base own)
 	(*input).UpData();
 
 	Init();
-	Stetas();
+	Status();
 
 	if ((*input).State(INPUT_ID::SPACE).first == 1 && (*input).State(INPUT_ID::SPACE).second == 0)
 	{
+		Save();
 		return std::make_unique<GameScene>();
 	}
 
 	return std::move(own);
 }
 
-void ResultScene::Stetas(void)
+void ResultScene::Status(void)
 {
 	if ((*input).State(INPUT_ID::UP).first == 1 && (*input).State(INPUT_ID::UP).second == 0)
 	{
-		if (!(y == 9 && x == 9))
+
+		if (HP < 99)
 		{
-			x++;
+			HP++;
 		}
 	}
 	if ((*input).State(INPUT_ID::DOWN).first == 1 && (*input).State(INPUT_ID::DOWN).second == 0)
 	{
-		if (x > 0)
+		if (HP > 0)
 		{
-			x--;
-		}
-		else
-		{
-			if (y >= 1)
-			{
-				y--;
-				x = 9;
-			}
+			HP--;
 		}
 	}
-	if (x < 10)
+	if (HP < 10)
 	{
-		if (y == 0)
-		{
-			DrawGraph(245, 55, IMAGE_ID("êîéö")[x], true);
-			DrawGraph(305, 84, IMAGE_ID("êîéö")[x], true);
-		}
-		if (y >= 1)
-		{
-			DrawGraph(260, 55, IMAGE_ID("êîéö")[x], true);
-			DrawGraph(320, 84, IMAGE_ID("êîéö")[x], true);
-		}
+		DrawGraph(325, 55, IMAGE_ID("êîéö")[HP], true);
 	}
 	else
 	{
-		x = 0;
-		y++;
+		if (HP >= 10 && HP < 20)
+		{
+			a = 10;
+		}
+		if (HP >= 20 && HP < 30)
+		{
+			a = 20;
+		}
+		if (HP >= 30 && HP < 40)
+		{
+			a = 30;
+		}
+		if (HP >= 40 && HP < 50)
+		{
+			a = 40;
+		}
+		if (HP >= 50 && HP < 60)
+		{
+			a = 50;
+		}
+		if (HP >= 60 && HP < 70)
+		{
+			a = 60;
+		}
+		if (HP >= 70 && HP < 80)
+		{
+			a = 70;
+		}
+		if (HP >= 80 && HP < 90)
+		{
+			a = 80;
+		}
+		if (HP >= 90 && HP < 700)
+		{
+			a = 90;
+		}
+
+		x = HP - a;
+		y = (HP - x) / 10;
+
+		DrawGraph(325, 55, IMAGE_ID("êîéö")[y], true);
+		DrawGraph(340, 55, IMAGE_ID("êîéö")[x], true);
 	}
-	if (y >= 1)
+	if ((*input).State(INPUT_ID::RIGHT).first == 1 && (*input).State(INPUT_ID::RIGHT).second == 0)
 	{
-		DrawGraph(245, 55, IMAGE_ID("êîéö")[y], true);
-		DrawGraph(305, 84, IMAGE_ID("êîéö")[y], true);
+
+		if (STR < 99)
+		{
+			STR++;
+		}
+	}
+	if ((*input).State(INPUT_ID::LEFT).first == 1 && (*input).State(INPUT_ID::LEFT).second == 0)
+	{
+		if (STR > 0)
+		{
+			STR--;
+		}
+	}
+	if (STR < 10)
+	{
+		DrawGraph(325, 84, IMAGE_ID("êîéö")[STR], true);
+	}
+	else
+	{
+		if (STR >= 10 && STR < 20)
+		{
+			a = 10;
+		}
+		if (STR >= 20 && STR < 30)
+		{
+			a = 20;
+		}
+		if (STR >= 30 && STR < 40)
+		{
+			a = 30;
+		}
+		if (STR >= 40 && STR < 50)
+		{
+			a = 40;
+		}
+		if (STR >= 50 && STR < 60)
+		{
+			a = 50;
+		}
+		if (STR >= 60 && STR < 70)
+		{
+			a = 60;
+		}
+		if (STR >= 70 && STR < 80)
+		{
+			a = 70;
+		}
+		if (STR >= 80 && STR < 90)
+		{
+			a = 80;
+		}
+		if (STR >= 90 && STR < 700)
+		{
+			a = 90;
+		}
+
+		x = STR - a;
+		y = (STR - x) / 10;
+
+		DrawGraph(325, 84, IMAGE_ID("êîéö")[y], true);
+		DrawGraph(340, 84, IMAGE_ID("êîéö")[x], true);
 	}
 }
 
@@ -104,18 +186,18 @@ void ResultScene::Init(void)
 	DrawGraph(90 + 240, 210, IMAGE_ID("ï∂éö")[19], true);
 
 	// HP:
-	DrawGraph(200, 55, IMAGE_ID("ï∂éö")[7], true);
-	DrawGraph(215, 55, IMAGE_ID("ï∂éö")[15], true);
-	DrawGraph(230, 55, IMAGE_ID("ï∂éö")[26], true);
+	DrawGraph(280, 55, IMAGE_ID("ï∂éö")[7], true);
+	DrawGraph(295, 55, IMAGE_ID("ï∂éö")[15], true);
+	DrawGraph(310, 55, IMAGE_ID("ï∂éö")[26], true);
 
 	// ATTACK:
-	DrawGraph(200, 84, IMAGE_ID("ï∂éö")[0], true);
-	DrawGraph(215, 84, IMAGE_ID("ï∂éö")[19], true);
-	DrawGraph(230, 84, IMAGE_ID("ï∂éö")[19], true);
-	DrawGraph(245, 84, IMAGE_ID("ï∂éö")[0], true);
-	DrawGraph(260, 84, IMAGE_ID("ï∂éö")[2], true);
-	DrawGraph(275, 84, IMAGE_ID("ï∂éö")[10], true);
-	DrawGraph(290, 84, IMAGE_ID("ï∂éö")[26], true);
+	DrawGraph(220, 84, IMAGE_ID("ï∂éö")[0], true);
+	DrawGraph(235, 84, IMAGE_ID("ï∂éö")[19], true);
+	DrawGraph(250, 84, IMAGE_ID("ï∂éö")[19], true);
+	DrawGraph(265, 84, IMAGE_ID("ï∂éö")[0], true);
+	DrawGraph(280, 84, IMAGE_ID("ï∂éö")[2], true);
+	DrawGraph(295, 84, IMAGE_ID("ï∂éö")[10], true);
+	DrawGraph(310, 84, IMAGE_ID("ï∂éö")[26], true);
 
 	// òg
 	DrawGraph(200, 50, IMAGE_ID("òg")[0], true);

@@ -7,6 +7,8 @@ KeyState::KeyState()
 		KEY_INPUT_SPACE,
 		KEY_INPUT_UP,
 		KEY_INPUT_DOWN,
+		KEY_INPUT_LEFT,
+		KEY_INPUT_RIGHT,
 	};
 	FILE* file;
 	fopen_s(&file, "data/key.dat", "rb");

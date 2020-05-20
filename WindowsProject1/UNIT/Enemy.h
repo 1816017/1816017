@@ -12,8 +12,8 @@ public:
 	UNIT GetUnitType(void) { return UNIT::ENEMY; }
 	void UpData(std::vector<shared_Obj> objList);
 	COMMON GetCom(void) { return com; }
-	PLAYER_STATAS GetPStatas(void) { return pData; }
-	ENEMY_STATAS GetEStatas(void) { return eData; }
+	PLAYER_STATUS GetPStatas(void) { return pData; }
+	ENEMY_STATUS GetEStatas(void) { return eData; }
 
 private:
 	bool Init(void);

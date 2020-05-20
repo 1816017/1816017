@@ -11,13 +11,13 @@ public:
 	unique_Base UpData(unique_Base own);
 	SCENE_ID GetSceneID(void) { return SCENE_ID::RESULT; }
 
-	void Stetas(void);
+	void Status(void);
+
+	int a;
+	int x;
+	int y;
 
 private:
 	void Init(void);
-
-	int x;
-	int y;
-	int z;
 };
 

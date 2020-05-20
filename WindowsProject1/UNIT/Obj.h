@@ -31,12 +31,12 @@ typedef struct COMMON {
 	int death;
 };
 
-typedef struct PLAYER_STATAS {
+typedef struct PLAYER_STATUS {
 	int HP;
 	int STR;
 };
 
-typedef struct ENEMY_STATAS {
+typedef struct ENEMY_STATUS {
 	int HP;
 	int STR;
 };
@@ -57,8 +57,8 @@ public:
 	bool isAlive(void) { return com.alive; }	// €–SŠÖ”
 	bool isDeath(void) { return com.death; }	// Á–ÅŠÖ”
 	virtual COMMON GetCom(void) { return com; }
-	virtual PLAYER_STATAS GetPStatas(void) { return pData; }
-	virtual ENEMY_STATAS GetEStatas(void) { return eData; }
+	virtual PLAYER_STATUS GetPStatus(void) { return pData; }
+	virtual ENEMY_STATUS GetEStatus(void) { return eData; }
 	bool AnimKey(ANIM key);		// ±ÆÒ°¼®İ·°‚Ì¾¯ÄŠÖ”
 	const ANIM AnimKey(void) const;			//±ÆÒ°¼®İ·°‚Ìæ“¾
 
@@ -74,10 +74,13 @@ protected:
 	bool DeathPur(void);	// ¶€ˆ—
 
 	int animcount;	// ±ÆÒ°¼®İ¶³İÄ”
+	int a;
+	int x;
+	int y;
 
 	AnimVector data;
-	PLAYER_STATAS pData;
-	ENEMY_STATAS eData;
+	PLAYER_STATUS pData;
+	ENEMY_STATUS eData;
 	COMMON com;
 
 	std::list<shared_Obj> objList;	// Ø½Ä‰»

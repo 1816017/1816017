@@ -175,6 +175,7 @@
     <ClInclude Include="common\WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="common\Image.cpp" />
     <ClCompile Include="Input\InputState.cpp" />
     <ClCompile Include="Input\INPUT_ID.cpp" />

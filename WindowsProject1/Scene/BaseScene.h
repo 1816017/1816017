@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <list>
 #include <DxLib.h>
 #include <WindowsProject1/Input/KeyState.h>
 #include <WindowsProject1/common/Image.h>
@@ -14,14 +15,23 @@ enum class SCENE_ID // enum¸×½
 
 class BaseScene;
 using unique_Base = std::unique_ptr<BaseScene>;
+using shared_Scene = std::shared_ptr<BaseScene>;	// È—ª
 
 class BaseScene
 {
 public:
-	BaseScene() { input = std::make_unique<KeyState>(); }
+	BaseScene();
 	virtual ~BaseScene() {}
 	virtual unique_Base UpData(unique_Base own) = 0;	// ±¯ÌßÃŞ°ÄŠÖ”
 	virtual SCENE_ID GetSceneID(void) = 0;	// SceneŠÇ——pID
 
+	void Save(void);
+	void Load(void);
+
+protected:
+	int HP;
+	int STR;
+
+	std::list<shared_Scene> sceneList;	// Ø½Ä‰»
 	std::unique_ptr<InputState> input;		// ·°ˆ—
 };

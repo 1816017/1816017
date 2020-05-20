@@ -32,7 +32,7 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 	{
 		if (data->GetUnitType() == UNIT::PLAYER)
 		{
-			pData = data->GetPStatas();
+			pData = data->GetPStatus();
 			pCom = data->GetCom();
 		}
 	}
@@ -54,7 +54,7 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 		}
 	}
 	
-	if (eData.HP == 0)
+	if (eData.HP <= 0)
 	{
 		com.alive = false;
 	}

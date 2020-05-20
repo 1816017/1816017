@@ -16,7 +16,6 @@ public:
 
 private:
 	bool Init(void);
-
 	void Draw(void);
 
 	sharedVec objList;
