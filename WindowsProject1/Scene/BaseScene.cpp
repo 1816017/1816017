@@ -2,6 +2,9 @@
 
 BaseScene::BaseScene()
 {
+	Apos = { 0,0 };
+	Bpos = { 600,0 };
+
 	input = std::make_unique<KeyState>();
 }
 

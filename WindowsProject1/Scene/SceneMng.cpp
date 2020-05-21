@@ -31,7 +31,7 @@ SceneMng::~SceneMng()
 
 bool SceneMng::SysInit(void)
 {
-	SetWindowText("後で決める");
+	SetWindowText("MonstersAliceSyndrome");
 	SetGraphMode(ScreenSize.x, ScreenSize.y, 16);	// 640 * 480ﾄﾞｯﾄ 65536色ﾓｰﾄﾞに設定
 	ChangeWindowMode(true);			// true:Window false:フルスクレーン
 	if (DxLib_Init() == -1)
@@ -46,9 +46,12 @@ bool SceneMng::SysInit(void)
 void SceneMng::ImageID(void)
 {
 	lpImage.GetID("bg", "image/bg1.png", { 1,1 }, { 600,300 });
+	lpImage.GetID("bg2", "image/bg2.png", { 1,1 }, { 600,300 });
+	lpImage.GetID("ロゴ1", "image/Monsters.png", { 1,1 }, { 300,100 });
+	lpImage.GetID("ロゴ2", "image/AliceSyndrome.png", { 1,1 }, { 500,100 });
 	lpImage.GetID("play_run", "image/run.png", { 6,1 }, { 100,72 });
 	lpImage.GetID("play_attack", "image/attack.png", { 7,2 }, { 100,72 });
-	lpImage.GetID("jump", "image/jump.png", { 7,2 }, { 100,72 });
+	lpImage.GetID("play_death", "image/death.png", { 7,1 }, { 100,72 });
 	lpImage.GetID("enemy", "image/enemy.png", { 1,2 }, { 60,40 });
 	lpImage.GetID("boss", "image/BOSS.png", { 1,1 }, { 171,165 });
 	lpImage.GetID("枠", "image/window.png", { 1,1 }, { 200,59 });

@@ -46,7 +46,7 @@ void ResultScene::Status(void)
 	}
 	if (HP < 10)
 	{
-		DrawGraph(325, 55, IMAGE_ID("”Žš")[HP], true);
+		DrawGraph(295, 55, IMAGE_ID("”Žš")[HP], true);
 	}
 	else
 	{
@@ -90,8 +90,8 @@ void ResultScene::Status(void)
 		x = HP - a;
 		y = (HP - x) / 10;
 
-		DrawGraph(325, 55, IMAGE_ID("”Žš")[y], true);
-		DrawGraph(340, 55, IMAGE_ID("”Žš")[x], true);
+		DrawGraph(295, 55, IMAGE_ID("”Žš")[y], true);
+		DrawGraph(310, 55, IMAGE_ID("”Žš")[x], true);
 	}
 	if ((*input).State(INPUT_ID::RIGHT).first == 1 && (*input).State(INPUT_ID::RIGHT).second == 0)
 	{
@@ -110,7 +110,7 @@ void ResultScene::Status(void)
 	}
 	if (STR < 10)
 	{
-		DrawGraph(325, 84, IMAGE_ID("”Žš")[STR], true);
+		DrawGraph(295, 84, IMAGE_ID("”Žš")[STR], true);
 	}
 	else
 	{
@@ -154,8 +154,8 @@ void ResultScene::Status(void)
 		x = STR - a;
 		y = (STR - x) / 10;
 
-		DrawGraph(325, 84, IMAGE_ID("”Žš")[y], true);
-		DrawGraph(340, 84, IMAGE_ID("”Žš")[x], true);
+		DrawGraph(295, 84, IMAGE_ID("”Žš")[y], true);
+		DrawGraph(310, 84, IMAGE_ID("”Žš")[x], true);
 	}
 }
 
@@ -186,18 +186,15 @@ void ResultScene::Init(void)
 	DrawGraph(90 + 240, 210, IMAGE_ID("•¶Žš")[19], true);
 
 	// HP:
-	DrawGraph(280, 55, IMAGE_ID("•¶Žš")[7], true);
-	DrawGraph(295, 55, IMAGE_ID("•¶Žš")[15], true);
-	DrawGraph(310, 55, IMAGE_ID("•¶Žš")[26], true);
+	DrawGraph(250, 55, IMAGE_ID("•¶Žš")[7], true);
+	DrawGraph(265, 55, IMAGE_ID("•¶Žš")[15], true);
+	DrawGraph(280, 55, IMAGE_ID("•¶Žš")[26], true);
 
-	// ATTACK:
-	DrawGraph(220, 84, IMAGE_ID("•¶Žš")[0], true);
-	DrawGraph(235, 84, IMAGE_ID("•¶Žš")[19], true);
+	// STR:
+	DrawGraph(235, 84, IMAGE_ID("•¶Žš")[18], true);
 	DrawGraph(250, 84, IMAGE_ID("•¶Žš")[19], true);
-	DrawGraph(265, 84, IMAGE_ID("•¶Žš")[0], true);
-	DrawGraph(280, 84, IMAGE_ID("•¶Žš")[2], true);
-	DrawGraph(295, 84, IMAGE_ID("•¶Žš")[10], true);
-	DrawGraph(310, 84, IMAGE_ID("•¶Žš")[26], true);
+	DrawGraph(265, 84, IMAGE_ID("•¶Žš")[17], true);
+	DrawGraph(280, 84, IMAGE_ID("•¶Žš")[26], true);
 
 	// ˜g
 	DrawGraph(200, 50, IMAGE_ID("˜g")[0], true);

@@ -39,7 +39,7 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 
 	AnimKey(ANIM::RUN);
 
-	if (pCom.alive)
+	if (pData.HP > 0)
 	{
 		com.pos.x -= 2;
 	}

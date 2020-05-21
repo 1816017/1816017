@@ -20,7 +20,7 @@ enum class ANIM
 	NORMAL,
 	RUN,
 	ATTACK,
-	JUMP,
+	DEATH,
 	MAX
 };
 

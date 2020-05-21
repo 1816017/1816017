@@ -23,6 +23,7 @@ private:
 
 	int cnt;
 	bool attackFlag;
+	bool flag;
 
 	COMMON eCom;
 };

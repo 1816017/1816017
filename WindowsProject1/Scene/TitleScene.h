@@ -13,8 +13,5 @@ public:
 
 private:
 	void Init(void);
-
-	Vector2 Apos;
-	Vector2 Bpos;
 };
 

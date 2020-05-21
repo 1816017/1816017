@@ -32,6 +32,9 @@ protected:
 	int HP;
 	int STR;
 
+	Vector2 Apos;
+	Vector2 Bpos;
+
 	std::list<shared_Scene> sceneList;	// Ø½Ä‰»
 	std::unique_ptr<InputState> input;		// ·°ˆ—
 };

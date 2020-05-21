@@ -3,8 +3,7 @@
 
 TitleScene::TitleScene()
 {
-	Apos = { 0,0 };
-	Bpos = { 600,0 };
+	Load();
 }
 
 TitleScene::~TitleScene()
@@ -17,20 +16,12 @@ unique_Base TitleScene::UpData(unique_Base own)
 
 	Init();
 
-	Apos.x--;
-	Bpos.x--;
-
-	if (Apos.x <= -600)
-	{
-		Apos.x = 600;
-	}
-	if (Bpos.x <= -600)
-	{
-		Bpos.x = 600;
-	}
+	HP = 10;
+	STR = 1;
 
 	if ((*input).State(INPUT_ID::SPACE).first == 1 && (*input).State(INPUT_ID::SPACE).second == 0)
 	{
+		Save();
 		return std::make_unique<GameScene>();
 	}
 
@@ -39,8 +30,9 @@ unique_Base TitleScene::UpData(unique_Base own)
 
 void TitleScene::Init(void)
 {
-	DrawGraph(Apos.x, Apos.y, IMAGE_ID("bg")[0], true);
-	DrawGraph(Bpos.x, Bpos.y, IMAGE_ID("bg")[0], true);
+	// DrawGraph(Apos.x, Apos.y, IMAGE_ID("bg2")[0], true);
+	DrawGraph(150, 20, IMAGE_ID("ÉçÉS1")[0], true);
+	DrawGraph(50, 100, IMAGE_ID("ÉçÉS2")[0], true);
 	// GAME
 	DrawGraph(215, 230, IMAGE_ID("ï∂éö")[6], true);
 	DrawGraph(230, 230, IMAGE_ID("ï∂éö")[0], true);

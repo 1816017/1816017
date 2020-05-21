@@ -36,7 +36,7 @@ void Obj::Draw(void)
 			animframe = 0;
 		}
 	}
-	DrawGraph(com.pos.x, com.pos.y, AnimMap[animkey][animframe].first, true);
+	DrawExtendGraph(com.pos.x, com.pos.y, com.pos.x + com.size.x, com.pos.y + com.size.y, AnimMap[animkey][animframe].first, true);
 	animcount++;
 }
 

@@ -12,6 +12,7 @@ Player::Player(Vector2 position, Vector2 size, int hitpoint, int strength)
 	pData.STR = strength;
 
 	attackFlag = false;
+	flag = false;
 	cnt = 0;
 	Init();
 }
@@ -46,6 +47,7 @@ void Player::UpData(std::vector<shared_Obj> objList)
 	{
 		if (pData.HP > 0)
 		{
+			cnt = 0;
 			pData.HP--;
 		}
 	}
@@ -60,7 +62,7 @@ void Player::UpData(std::vector<shared_Obj> objList)
 
 	if (pData.HP <= 0)
 	{
-		com.alive = false;
+		flag = true;
 	}
 
 	cnt++;
@@ -70,6 +72,8 @@ void Player::Control(void)
 {
 	if ((*input).State(INPUT_ID::SPACE).first)
 	{
+		com.pos.y--;
+		com.size.y++;
 		attackFlag = true;
 		cnt = 0;
 	}
@@ -84,6 +88,10 @@ void Player::Control(void)
 		{
 			attackFlag = false;
 		}
+	}
+	else if (flag)
+	{
+		AnimKey(ANIM::DEATH);
 	}
 	else
 	{
@@ -223,5 +231,15 @@ bool Player::Init(void)
 	data.emplace_back(IMAGE_ID("play_attack")[9], 40);
 	data.emplace_back(IMAGE_ID("play_attack")[10], 50);
 	SetAnim(ANIM::ATTACK , data);
+
+	data.reserve(7);
+	data.emplace_back(IMAGE_ID("play_death")[5], 10);
+	data.emplace_back(IMAGE_ID("play_death")[6], 20);
+	data.emplace_back(IMAGE_ID("play_death")[0], 30);
+	data.emplace_back(IMAGE_ID("play_death")[1], 40);
+	data.emplace_back(IMAGE_ID("play_death")[2], 50);
+	data.emplace_back(IMAGE_ID("play_death")[3], 60);
+	data.emplace_back(IMAGE_ID("play_death")[4], 7000);
+	SetAnim(ANIM::DEATH, data);
 	return true;
 }
