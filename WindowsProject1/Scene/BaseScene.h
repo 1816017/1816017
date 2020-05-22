@@ -8,6 +8,7 @@
 enum class SCENE_ID // enum¸×½
 {
 	TITLE,
+	OPERATION,
 	GAME,	// GameScene
 	RESULT,
 	MAX
@@ -30,7 +31,16 @@ public:
 
 protected:
 	int HP;
+	int bHP;
 	int STR;
+	int bSTR;
+
+	int SP;
+
+	bool mput;
+	bool mputOld;
+
+	Vector2 pos;
 
 	Vector2 Apos;
 	Vector2 Bpos;

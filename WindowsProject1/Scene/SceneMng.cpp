@@ -12,7 +12,7 @@ void SceneMng::Ran(void)
 	SetBackgroundColor(0, 0, 0);
 	SysInit();
 	ImageID();
-	activScene = std::make_unique<ResultScene>();
+	activScene = std::make_unique<TitleScene>();
 	while ((ProcessMessage() == 0) && (CheckHitKey(KEY_INPUT_ESCAPE) == 0))
 	{
 		ClearDrawScreen();
@@ -55,6 +55,6 @@ void SceneMng::ImageID(void)
 	lpImage.GetID("enemy", "image/enemy.png", { 1,2 }, { 60,40 });
 	lpImage.GetID("boss", "image/BOSS.png", { 1,1 }, { 171,165 });
 	lpImage.GetID("òg", "image/window.png", { 1,1 }, { 200,59 });
-	lpImage.GetID("ï∂éö", "image/alphabet.png", { 7,4 }, { 15,21 });
+	lpImage.GetID("ï∂éö", "image/alphabet.png", { 7,5 }, { 15,21 });
 	lpImage.GetID("êîéö", "image/number.png", { 10,1 }, { 15,21 });
 }

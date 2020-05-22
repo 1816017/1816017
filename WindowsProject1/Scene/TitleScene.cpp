@@ -1,5 +1,6 @@
 #include <WindowsProject1/Scene/TitleScene.h>
 #include <WindowsProject1/Scene/GameScene.h>
+#include <WindowsProject1/Scene/OperationScene.h>
 
 TitleScene::TitleScene()
 {
@@ -14,15 +15,33 @@ unique_Base TitleScene::UpData(unique_Base own)
 {
 	(*input).UpData();
 
+	SetMouseDispFlag(true);
+	GetMousePoint(&pos.x, &pos.y);
+	mputOld = mput;
+	mput = GetMouseInput();
+
 	Init();
 
 	HP = 10;
+	bHP = 10;
 	STR = 1;
+	bSTR = 1;
 
-	if ((*input).State(INPUT_ID::SPACE).first == 1 && (*input).State(INPUT_ID::SPACE).second == 0)
+	if (pos.x > 200 && pos.x < 365 && pos.y > 220 && pos.y < 261)
 	{
-		Save();
-		return std::make_unique<GameScene>();
+		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+		{
+			Save();
+			return std::make_unique<GameScene>();
+		}
+	}
+
+	if (pos.x > 485 && pos.x < 560 && pos.y > 250 && pos.y < 291)
+	{
+		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+		{
+			return std::make_unique<OperationScene>();
+		}
 	}
 
 	return std::move(own);
@@ -44,4 +63,9 @@ void TitleScene::Init(void)
 	DrawGraph(320, 230, IMAGE_ID("•¶Žš")[0], true);
 	DrawGraph(335, 230, IMAGE_ID("•¶Žš")[17], true);
 	DrawGraph(350, 230, IMAGE_ID("•¶Žš")[19], true);
+	//MENU
+	DrawGraph(500, 260, IMAGE_ID("•¶Žš")[12], true);
+	DrawGraph(515, 260, IMAGE_ID("•¶Žš")[4], true);
+	DrawGraph(530, 260, IMAGE_ID("•¶Žš")[13], true);
+	DrawGraph(545, 260, IMAGE_ID("•¶Žš")[20], true);
 }

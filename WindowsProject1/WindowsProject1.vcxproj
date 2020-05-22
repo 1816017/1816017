@@ -160,6 +160,7 @@
     <ClInclude Include="Input\InputState.h" />
     <ClInclude Include="Input\INPUT_ID.h" />
     <ClInclude Include="Input\KeyState.h" />
+    <ClInclude Include="Scene\OperationScene.h" />
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="Scene\TitleScene.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="common\WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\OperationScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="common\Image.cpp" />
     <ClCompile Include="Input\InputState.cpp" />

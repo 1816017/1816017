@@ -19,5 +19,7 @@ public:
 
 private:
 	void Init(void);
+
+	int count;
 };
 
