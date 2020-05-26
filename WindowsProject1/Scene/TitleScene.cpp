@@ -38,12 +38,16 @@ unique_Base TitleScene::UpData(unique_Base own)
 
 	if (pos.x > 485 && pos.x < 560 && pos.y > 250 && pos.y < 291)
 	{
-		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+		if (cnt > 1)
 		{
-			return std::make_unique<OperationScene>();
+			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+			{
+				return std::make_unique<OperationScene>();
+			}
 		}
 	}
 
+	cnt++;
 	return std::move(own);
 }
 

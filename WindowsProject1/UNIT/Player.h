@@ -21,7 +21,6 @@ private:
 	void Draw(void);
 	bool Init(void);
 
-	int cnt;
 	bool attackFlag;
 	bool flag;
 

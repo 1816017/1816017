@@ -13,7 +13,6 @@ Player::Player(Vector2 position, Vector2 size, int hitpoint, int strength)
 
 	attackFlag = false;
 	flag = false;
-	cnt = 0;
 	Init();
 }
 
@@ -25,8 +24,15 @@ void Player::UpData(std::vector<shared_Obj> objList)
 {
 	(*input).UpData();
 
+	SetMouseDispFlag(true);
+	GetMousePoint(&mpos.x, &mpos.y);
+	mputOld = mput;
+	mput = GetMouseInput();
+
 	Draw();
 	Control();
+
+	DrawBox(mpos.x + 5, mpos.y + 5, mpos.x - 5, mpos.y - 5, 0xffffff, true);
 
 	if (DeathPur())
 	{
@@ -52,35 +58,30 @@ void Player::UpData(std::vector<shared_Obj> objList)
 		}
 	}
 
-	if ((*input).State(INPUT_ID::UP).first == 1 && (*input).State(INPUT_ID::UP).second == 0)
-	{
-		if (pData.HP < 99)
-		{
-			pData.HP++;
-		}
-	}
-
 	if (pData.HP <= 0)
 	{
 		flag = true;
 	}
 
+	DrawFormatString(0, 60, 0xffffff, "X:%d", mpos.x);
+	DrawFormatString(50, 60, 0xffffff, "Y:%d", mpos.y);
 	cnt++;
 }
 
 void Player::Control(void)
 {
-	if ((*input).State(INPUT_ID::SPACE).first)
+	if (!attackFlag)
 	{
-		com.pos.y--;
-		com.size.y++;
-		attackFlag = true;
-		cnt = 0;
+		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+		{
+			attackFlag = true;
+			cnt = 0;
+		}
 	}
 
 	if (attackFlag)
 	{
-		if (cnt >= 0 && cnt < 40)
+		if (cnt >= 0 && cnt < 80)
 		{
 			AnimKey(ANIM::ATTACK);
 		}
@@ -224,12 +225,16 @@ bool Player::Init(void)
 	data.emplace_back(IMAGE_ID("play_run")[5], 60);
 	SetAnim(ANIM::RUN, data);
 
-	data.reserve(5);
-	data.emplace_back(IMAGE_ID("play_attack")[6], 10);
-	data.emplace_back(IMAGE_ID("play_attack")[7], 20);
-	data.emplace_back(IMAGE_ID("play_attack")[8], 30);
-	data.emplace_back(IMAGE_ID("play_attack")[9], 40);
-	data.emplace_back(IMAGE_ID("play_attack")[10], 50);
+	data.reserve(9);
+	data.emplace_back(IMAGE_ID("play_attack")[0], 10);
+	data.emplace_back(IMAGE_ID("play_attack")[1], 20);
+	data.emplace_back(IMAGE_ID("play_attack")[2], 30);
+	data.emplace_back(IMAGE_ID("play_attack")[3], 40);
+	data.emplace_back(IMAGE_ID("play_attack")[4], 50);
+	data.emplace_back(IMAGE_ID("play_attack")[5], 60);
+	data.emplace_back(IMAGE_ID("play_attack")[6], 70);
+	data.emplace_back(IMAGE_ID("play_attack")[7], 80);
+	data.emplace_back(IMAGE_ID("play_attack")[8], 90);
 	SetAnim(ANIM::ATTACK , data);
 
 	data.reserve(7);

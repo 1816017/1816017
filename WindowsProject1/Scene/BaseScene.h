@@ -36,6 +36,7 @@ protected:
 	int bSTR;
 
 	int SP;
+	int cnt;
 
 	bool mput;
 	bool mputOld;

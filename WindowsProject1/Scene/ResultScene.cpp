@@ -69,90 +69,91 @@ unique_Base ResultScene::UpData(unique_Base own)
 		}
 	}
 
-	if (pos.y >= 0 && pos.y < 110)
+	if (cnt > 1)
 	{
-		count = 0;
-		if (pos.x > 325 && pos.x < 360 && pos.y > 59 && pos.y < 82)
+		if (pos.y >= 0 && pos.y < 110)
 		{
-			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+			count = 0;
+			if (pos.x > 325 && pos.x < 360 && pos.y > 59 && pos.y < 82)
 			{
-				if (HP < 99)
+				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 				{
-					if (SP > 0)
+					if (HP < 99)
 					{
-						HP++;
-						SP--;
+						if (SP > 0)
+						{
+							HP++;
+							SP--;
+						}
+					}
+				}
+			}
+			if (pos.x > 325 && pos.x < 360 && pos.y > 82 && pos.y < 105)
+			{
+				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+				{
+					if (HP > bHP)
+					{
+						HP--;
+						SP++;
 					}
 				}
 			}
 		}
-		if (pos.x > 325 && pos.x < 360 && pos.y > 82 && pos.y < 105)
+		if (pos.y >= 110 && pos.y < 180)
 		{
-			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+			count = 1;
+			if (pos.x > 325 && pos.x < 360 && pos.y > 119 && pos.y < 142)
 			{
-				if (HP > bHP)
+				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 				{
-					HP--;
-					SP++;
+					if (STR < 99)
+					{
+						if (SP > 0)
+						{
+							STR++;
+							SP--;
+						}
+					}
 				}
 			}
-		}
-	}
-	if (pos.y >= 110 && pos.y < 180)
-	{
-		count = 1;
-		if (pos.x > 325 && pos.x < 360 && pos.y > 119 && pos.y < 142)
-		{
-			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+			if (pos.x > 325 && pos.x < 360 && pos.y > 142 && pos.y < 165)
 			{
-				if (STR < 99)
+				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 				{
-					if (SP > 0)
+					if (STR > bSTR)
 					{
-						STR++;
-						SP--;
+						STR--;
+						SP++;
 					}
 				}
 			}
 		}
-		if (pos.x > 325 && pos.x < 360 && pos.y > 142 && pos.y < 165)
+		if (pos.y >= 180 && pos.y < 240)
 		{
+			count = 2;
 			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 			{
-				if (STR > bSTR)
-				{
-					STR--;
-					SP++;
-				}
+				bHP = HP;
+				bSTR = STR;
+				Save();
+				return std::make_unique<GameScene>();
+			}
+		}
+		if (pos.y >= 240 && pos.y < 300)
+		{
+			count = 3;
+			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+			{
+				Save();
+				return std::make_unique<TitleScene>();
 			}
 		}
 	}
-	if (pos.y >= 180 && pos.y < 240)
-	{
-		count = 2;
-		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
-		{
-			bHP = HP;
-			bSTR = STR;
-			Save();
-			return std::make_unique<GameScene>();
-		}
-	}
-	if (pos.y >= 240 && pos.y < 300)
-	{
-		count = 3;
-		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
-		{
-			Save();
-			return std::make_unique<TitleScene>();
-		}
-	}
 
-	DrawFormatString(0, 0, 0xffffff, "posx:%d", pos.x);
-	DrawFormatString(0, 30, 0xffffff, "posy:%d", pos.y);
-	DrawFormatString(0, 60, 0xffffff, "count:%d", count);
-	DrawFormatString(0, 90, 0xffffff, "SP:%d", SP);
+	DrawFormatString(0, 0, 0xffffff, "SP:%d", SP);
 
+	cnt++;
 	return std::move(own);
 }
 

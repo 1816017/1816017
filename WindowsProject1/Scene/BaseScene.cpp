@@ -6,6 +6,8 @@ BaseScene::BaseScene()
 	Apos = { 0,0 };
 	Bpos = { 600,0 };
 
+	cnt = 0;
+
 	mput = false;
 	mputOld = false;
 

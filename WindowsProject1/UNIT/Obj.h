@@ -77,6 +77,12 @@ protected:
 	int a;
 	int x;
 	int y;
+	int cnt;
+
+	bool mput;
+	bool mputOld;
+
+	Vector2 mpos;
 
 	AnimVector data;
 	PLAYER_STATUS pData;

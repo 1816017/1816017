@@ -22,6 +22,10 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 {
 	(*input).UpData();
 
+	SetMouseDispFlag(true);
+	GetMousePoint(&mpos.x, &mpos.y);
+	mputOld = mput;
+	mput = GetMouseInput();
 
 	if (DeathPur())
 	{
@@ -53,6 +57,20 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 			eData.HP-= pData.STR;
 		}
 	}
+
+	if (com.pos.x + com.size.x > mpos.x - 5 && com.pos.x < mpos.x + 5
+		&& com.pos.y + com.size.y >mpos.y - 5 && com.pos.y < mpos.y + 5)
+	{
+		if (cnt > 80)
+		{
+			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
+			{
+				com.pos.x += 100;
+				eData.HP -= pData.STR;
+				cnt = 0;
+			}
+		}
+	}
 	
 	if (eData.HP <= 0)
 	{
@@ -60,6 +78,8 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 	}
 
 	DrawFormatString(0, 30, GetColor(255, 255, 255), "HP : %d", eData.HP);
+
+	cnt++;
 }
 
 bool Enemy::Init(void)

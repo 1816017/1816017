@@ -18,5 +18,7 @@ private:
 	bool Init(void);
 	void Draw(void);
 
+	PLAYER_STATUS pData;
+
 	sharedVec objList;
 };
