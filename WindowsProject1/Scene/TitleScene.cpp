@@ -16,18 +16,19 @@ unique_Base TitleScene::UpData(unique_Base own)
 	(*input).UpData();
 
 	SetMouseDispFlag(true);
-	GetMousePoint(&pos.x, &pos.y);
+	GetMousePoint(&mousePos.x, &mousePos.y);
 	mputOld = mput;
 	mput = GetMouseInput();
 
 	Init();
 
-	HP = 10;
+	HP = 3;
 	bHP = 10;
 	STR = 1;
 	bSTR = 1;
+	SP = 0;
 
-	if (pos.x > 200 && pos.x < 365 && pos.y > 220 && pos.y < 261)
+	if (mousePos.x > 200 && mousePos.x < 365 && mousePos.y > 220 && mousePos.y < 261)
 	{
 		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 		{
@@ -36,7 +37,7 @@ unique_Base TitleScene::UpData(unique_Base own)
 		}
 	}
 
-	if (pos.x > 485 && pos.x < 560 && pos.y > 250 && pos.y < 291)
+	if (mousePos.x > 485 && mousePos.x < 560 && mousePos.y > 250 && mousePos.y < 291)
 	{
 		if (cnt > 1)
 		{

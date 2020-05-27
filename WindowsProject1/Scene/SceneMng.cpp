@@ -53,6 +53,7 @@ void SceneMng::ImageID(void)
 	lpImage.GetID("play_attack", "image/attack.png", { 4,3 }, { 100,72 });
 	lpImage.GetID("play_death", "image/death.png", { 7,1 }, { 100,72 });
 	lpImage.GetID("enemy", "image/enemy.png", { 1,2 }, { 60,40 });
+	lpImage.GetID("enemy2", "image/enemy2.png", { 1,2 }, { 60,40 });
 	lpImage.GetID("boss", "image/BOSS.png", { 1,1 }, { 171,165 });
 	lpImage.GetID("˜g", "image/window.png", { 1,1 }, { 200,59 });
 	lpImage.GetID("•¶Žš", "image/alphabet.png", { 7,5 }, { 15,21 });

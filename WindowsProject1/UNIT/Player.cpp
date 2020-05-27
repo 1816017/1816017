@@ -1,15 +1,16 @@
 #include <WindowsProject1/UNIT/Player.h>
+#include <WindowsProject1/UNIT/Enemy.h>
 
 Player::Player()
 {
 }
 
-Player::Player(Vector2 position, Vector2 size, int hitpoint, int strength)
+Player::Player(Vector2 pos, Vector2 size, int HP, int STR)
 {
-	com.pos = position;
+	com.pos = pos;
 	com.size = size;
-	pData.HP = hitpoint;
-	pData.STR = strength;
+	pData.HP = HP;
+	pData.STR = STR;
 
 	attackFlag = false;
 	flag = false;
@@ -22,17 +23,15 @@ Player::~Player()
 
 void Player::UpData(std::vector<shared_Obj> objList)
 {
-	(*input).UpData();
-
 	SetMouseDispFlag(true);
-	GetMousePoint(&mpos.x, &mpos.y);
+	GetMousePoint(&mousePos.x, &mousePos.y);
 	mputOld = mput;
 	mput = GetMouseInput();
-
+	
 	Draw();
 	Control();
 
-	DrawBox(mpos.x + 5, mpos.y + 5, mpos.x - 5, mpos.y - 5, 0xffffff, true);
+	DrawBox(mousePos.x + 5, mousePos.y + 5, mousePos.x - 5, mousePos.y - 5, 0xffffff, true);
 
 	if (DeathPur())
 	{
@@ -41,20 +40,34 @@ void Player::UpData(std::vector<shared_Obj> objList)
 	
 	for (auto data : objList)
 	{
-		if (data->GetUnitType() == UNIT::ENEMY)
+		eData = data->GetEStatus();
+		if (data->GetUnitType() == UNIT::WATERING_SPIDER)
 		{
-			eData = data->GetEStatus();
-			eCom = data->GetCom();
+			eCom[0] = data->GetCom();
+		}
+		if (data->GetUnitType() == UNIT::WATERING_SPIDER2)
+		{
+			eCom[1] = data->GetCom();
 		}
 	}
 
-	if (com.pos.x + com.size.x - 19 > eCom.pos.x && com.pos.x + 20 < eCom.pos.x + eCom.size.x
-		&& com.pos.y + com.size.y > eCom.pos.y && com.pos.y < eCom.pos.y + eCom.size.y)
+	if (com.pos.x + com.size.x - 19 > eCom[0].pos.x && com.pos.x + 20 < eCom[0].pos.x + eCom[0].size.x
+		&& com.pos.y + com.size.y > eCom[0].pos.y && com.pos.y < eCom[0].pos.y + eCom[0].size.y)
 	{
 		if (pData.HP > 0)
 		{
 			cnt = 0;
-			pData.HP--;
+			pData.HP -= eData.STR[0];
+		}
+	}
+
+	if (com.pos.x + com.size.x - 19 > eCom[1].pos.x && com.pos.x + 20 < eCom[1].pos.x + eCom[1].size.x
+		&& com.pos.y + com.size.y > eCom[1].pos.y && com.pos.y < eCom[1].pos.y + eCom[1].size.y)
+	{
+		if (pData.HP > 0)
+		{
+			cnt = 0;
+			pData.HP -= eData.STR[1];
 		}
 	}
 
@@ -63,8 +76,8 @@ void Player::UpData(std::vector<shared_Obj> objList)
 		flag = true;
 	}
 
-	DrawFormatString(0, 60, 0xffffff, "X:%d", mpos.x);
-	DrawFormatString(50, 60, 0xffffff, "Y:%d", mpos.y);
+	DrawFormatString(0, 60, 0xffffff, "X:%d", mousePos.x);
+	DrawFormatString(50, 60, 0xffffff, "Y:%d", mousePos.y);
 	cnt++;
 }
 
@@ -78,7 +91,6 @@ void Player::Control(void)
 			cnt = 0;
 		}
 	}
-
 	if (attackFlag)
 	{
 		if (cnt >= 0 && cnt < 80)
@@ -104,6 +116,10 @@ void Player::Draw(void)
 {
 	if (pData.HP < 10)
 	{
+		if (pData.HP < 0)
+		{
+			pData.HP = 0;
+		}
 		DrawGraph(45, 0, IMAGE_ID("”Žš")[pData.HP], true);
 	}
 	else

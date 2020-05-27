@@ -19,6 +19,7 @@ private:
 	void Draw(void);
 
 	PLAYER_STATUS pData;
+	ENEMY_STATUS eData;
 
 	sharedVec objList;
 };

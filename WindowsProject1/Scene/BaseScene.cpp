@@ -2,12 +2,12 @@
 
 BaseScene::BaseScene()
 {
-	pos = { 0,0 };
 	Apos = { 0,0 };
 	Bpos = { 600,0 };
 
 	cnt = 0;
 
+	mousePos = { 0,0 };
 	mput = false;
 	mputOld = false;
 
@@ -26,6 +26,7 @@ void BaseScene::Save(void)
 	fwrite(&bHP, sizeof(bHP), 1, file);
 	fwrite(&STR, sizeof(STR), 1, file);
 	fwrite(&bSTR, sizeof(bSTR), 1, file);
+	fwrite(&SP, sizeof(SP), 1, file);
 	fclose(file);
 }
 
@@ -39,6 +40,7 @@ void BaseScene::Load(void)
 		bHP = 10;
 		STR = 1;
 		bSTR = 1;
+		SP = 0;
 	}
 	else
 	{
@@ -46,6 +48,7 @@ void BaseScene::Load(void)
 		fread(&bHP, sizeof(bHP), 1, file);
 		fread(&STR, sizeof(STR), 1, file);
 		fread(&bSTR, sizeof(bSTR), 1, file);
+		fread(&SP, sizeof(SP), 1, file);
 	}
 	fclose(file);
 }

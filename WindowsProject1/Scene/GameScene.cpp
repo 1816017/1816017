@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <WindowsProject1/UNIT/Player.h>
 #include <WindowsProject1/UNIT/Enemy.h>
+#include <WindowsProject1/UNIT/Enemy2.h>
 #include <WindowsProject1/Scene/ResultScene.h>
 
 GameScene::GameScene()
@@ -18,7 +19,7 @@ unique_Base GameScene::UpData(unique_Base own)
 {
 	(*input).UpData();
 	SetMouseDispFlag(true);
-	GetMousePoint(&pos.x, &pos.y);
+	GetMousePoint(&mousePos.x, &mousePos.y);
 	mputOld = mput;
 	mput = GetMouseInput();
 
@@ -30,6 +31,15 @@ unique_Base GameScene::UpData(unique_Base own)
 		data->UpData(objList);
 		data->Obj::Draw();
 		pData = data->GetPStatus();
+		eData = data->GetEStatus();
+	}
+	if (eData.HP[0] <= 0)
+	{
+		SP = SP + eData.SP[0];
+	}
+	if (eData.HP[1] <= 0)
+	{
+		SP = SP + eData.SP[1];
 	}
 	Draw();
 
@@ -45,7 +55,7 @@ unique_Base GameScene::UpData(unique_Base own)
 		Bpos.x = 600;
 	}
 
-	if (pData.HP == 0)
+	if (pData.HP <= 0)
 	{
 		// GAME
 		DrawGraph(0 + 240, 150, IMAGE_ID("•¶Žš")[6], true);
@@ -59,6 +69,7 @@ unique_Base GameScene::UpData(unique_Base own)
 		DrawGraph(120 + 240, 150, IMAGE_ID("•¶Žš")[17], true);
 		if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 		{
+			Save();
 			return std::make_unique<ResultScene>();
 		}
 	}
@@ -76,16 +87,21 @@ unique_Base GameScene::UpData(unique_Base own)
 bool GameScene::Init(void)
 {
 	objList.emplace_back(new Player(Vector2(0, 228), Vector2(100, 72), HP, STR));
-	objList.emplace_back(new Enemy(Vector2(600, 260), Vector2(60, 40), 5, 3));
-	// objList.emplace_back(new Enemy(Vector2(400, 135), Vector2(171, 165)));
+	objList.emplace_back(new Enemy(Vector2(600, 260), Vector2(60, 40), 5, 1, 1));
+	objList.emplace_back(new Enemy2(Vector2(500, 260), Vector2(60, 40), 10, 1, 1));
 
 	return true;
 }
 
 void GameScene::Draw(void)
 {
-	if ((*input).State(INPUT_ID::UP).first == 1 && (*input).State(INPUT_ID::UP).second == 0)
+	if (eData.HP[0] <= 0)
 	{
-		objList.emplace_back(new Enemy(Vector2(400, 260), Vector2(30, 40), 5, 1));
+		objList.emplace_back(new Enemy(Vector2(600, 260), Vector2(60, 40), 5, 1, 1));
+	}
+
+	if (eData.HP[1] <= 0)
+	{
+		objList.emplace_back(new Enemy2(Vector2(600, 260), Vector2(60, 40), 10, 2, 1));
 	}
 }

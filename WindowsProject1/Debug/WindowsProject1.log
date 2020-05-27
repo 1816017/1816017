@@ -1,5 +1,2 @@
 ﻿  GameScene.cpp
-C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Obj.h(32,2): warning C4091:  'typedef ': 変数が何も宣言されていないときは、'COMMON' の左辺を無視します。
-C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Obj.h(37,2): warning C4091:  'typedef ': 変数が何も宣言されていないときは、'PLAYER_STATUS' の左辺を無視します。
-C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Obj.h(42,2): warning C4091:  'typedef ': 変数が何も宣言されていないときは、'ENEMY_STATUS' の左辺を無視します。
   WindowsProject1.vcxproj -> C:\Users\ui\source\repos\WindowsProject1\Debug\WindowsProject1.exe

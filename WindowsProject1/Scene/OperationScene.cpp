@@ -12,13 +12,13 @@ OperationScene::~OperationScene()
 unique_Base OperationScene::UpData(unique_Base own)
 {
 	SetMouseDispFlag(true);
-	GetMousePoint(&pos.x, &pos.y);
+	GetMousePoint(&mousePos.x, &mousePos.y);
 	mputOld = mput;
 	mput = GetMouseInput();
 
 	Init();
 
-	if (pos.x > 448 && pos.x < 553 && pos.y > 250 && pos.y < 291)
+	if (mousePos.x > 448 && mousePos.x < 553 && mousePos.y > 250 && mousePos.y < 291)
 	{
 		if (cnt > 1)
 		{

@@ -41,7 +41,7 @@ protected:
 	bool mput;
 	bool mputOld;
 
-	Vector2 pos;
+	Vector2 mousePos;
 
 	Vector2 Apos;
 	Vector2 Bpos;

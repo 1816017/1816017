@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="common\Image.h" />
+    <ClInclude Include="UNIT\Enemy2.h" />
     <ClInclude Include="Input\InputState.h" />
     <ClInclude Include="Input\INPUT_ID.h" />
     <ClInclude Include="Input\KeyState.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="common\WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="UNIT\Enemy2.cpp" />
     <ClCompile Include="Scene\OperationScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="common\Image.cpp" />

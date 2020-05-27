@@ -10,8 +10,6 @@ Obj::Obj()
 	animcount = 0;
 	animframe = 0;
 	cnt = 0;
-
-	input = std::make_unique<KeyState>();
 }
 
 Obj::~Obj()

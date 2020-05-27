@@ -6,12 +6,12 @@
 #include <WindowsProject1/common/Vector2.h>
 #include <DxLib.h>
 #include <WindowsProject1/common/Image.h>
-#include<WindowsProject1/Input/KeyState.h>
 
 enum class UNIT
 {
 	PLAYER,	// ’∆Øƒ:Ãﬂ⁄≤‘∞
-	ENEMY,  // ’∆Øƒ:¥»–∞(Ç∂ÇÂÇ§ÇÎÇÆÇ‡)
+	WATERING_SPIDER,  // ’∆Øƒ:¥»–∞(Ç∂ÇÂÇ§ÇÎÇÆÇ‡)
+	WATERING_SPIDER2,  // ’∆Øƒ:¥»–∞2(Ç∂ÇÂÇ§ÇÎÇÆÇ‡2)
 	MAX
 };
 
@@ -24,22 +24,25 @@ enum class ANIM
 	MAX
 };
 
-typedef struct COMMON {
+#define ENEMY_MAX 2
+
+typedef struct {
 	Vector2 pos;
 	Vector2 size;
 	int alive;
 	int death;
-};
+}COMMON;
 
-typedef struct PLAYER_STATUS {
+typedef struct {
 	int HP;
 	int STR;
-};
+}PLAYER_STATUS;
 
-typedef struct ENEMY_STATUS {
-	int HP;
-	int STR;
-};
+typedef struct {
+	int HP[ENEMY_MAX];
+	int STR[ENEMY_MAX];
+	int SP[ENEMY_MAX];
+}ENEMY_STATUS;
 
 class Obj;
 using shared_Obj = std::shared_ptr<Obj>;	// è»ó™
@@ -82,7 +85,7 @@ protected:
 	bool mput;
 	bool mputOld;
 
-	Vector2 mpos;
+	Vector2 mousePos;
 
 	AnimVector data;
 	PLAYER_STATUS pData;
@@ -90,6 +93,5 @@ protected:
 	COMMON com;
 
 	std::list<shared_Obj> objList;	// ÿΩƒâª
-	std::unique_ptr<InputState> input;		// ∑∞èàóù
 };
 

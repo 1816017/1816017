@@ -20,7 +20,7 @@ unique_Base ResultScene::UpData(unique_Base own)
 	Init();
 	Status();
 	SetMouseDispFlag(true);
-	GetMousePoint(&pos.x, &pos.y);
+	GetMousePoint(&mousePos.x, &mousePos.y);
 	mputOld = mput;
 	mput = GetMouseInput();
 
@@ -71,10 +71,10 @@ unique_Base ResultScene::UpData(unique_Base own)
 
 	if (cnt > 1)
 	{
-		if (pos.y >= 0 && pos.y < 110)
+		if (mousePos.y >= 0 && mousePos.y < 110)
 		{
 			count = 0;
-			if (pos.x > 325 && pos.x < 360 && pos.y > 59 && pos.y < 82)
+			if (mousePos.x > 325 && mousePos.x < 360 && mousePos.y > 59 && mousePos.y < 82)
 			{
 				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 				{
@@ -88,7 +88,7 @@ unique_Base ResultScene::UpData(unique_Base own)
 					}
 				}
 			}
-			if (pos.x > 325 && pos.x < 360 && pos.y > 82 && pos.y < 105)
+			if (mousePos.x > 325 && mousePos.x < 360 && mousePos.y > 82 && mousePos.y < 105)
 			{
 				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 				{
@@ -100,10 +100,10 @@ unique_Base ResultScene::UpData(unique_Base own)
 				}
 			}
 		}
-		if (pos.y >= 110 && pos.y < 180)
+		if (mousePos.y >= 110 && mousePos.y < 180)
 		{
 			count = 1;
-			if (pos.x > 325 && pos.x < 360 && pos.y > 119 && pos.y < 142)
+			if (mousePos.x > 325 && mousePos.x < 360 && mousePos.y > 119 && mousePos.y < 142)
 			{
 				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 				{
@@ -117,7 +117,7 @@ unique_Base ResultScene::UpData(unique_Base own)
 					}
 				}
 			}
-			if (pos.x > 325 && pos.x < 360 && pos.y > 142 && pos.y < 165)
+			if (mousePos.x > 325 && mousePos.x < 360 && mousePos.y > 142 && mousePos.y < 165)
 			{
 				if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 				{
@@ -129,7 +129,7 @@ unique_Base ResultScene::UpData(unique_Base own)
 				}
 			}
 		}
-		if (pos.y >= 180 && pos.y < 240)
+		if (mousePos.y >= 180 && mousePos.y < 240)
 		{
 			count = 2;
 			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
@@ -140,7 +140,7 @@ unique_Base ResultScene::UpData(unique_Base own)
 				return std::make_unique<GameScene>();
 			}
 		}
-		if (pos.y >= 240 && pos.y < 300)
+		if (mousePos.y >= 240 && mousePos.y < 300)
 		{
 			count = 3;
 			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
@@ -151,7 +151,7 @@ unique_Base ResultScene::UpData(unique_Base own)
 		}
 	}
 
-	DrawFormatString(0, 0, 0xffffff, "SP:%d", SP);
+	// DrawFormatString(0, 0, 0xffffff, "SP:%d", SP);
 
 	cnt++;
 	return std::move(own);
@@ -159,28 +159,6 @@ unique_Base ResultScene::UpData(unique_Base own)
 
 void ResultScene::Status(void)
 {
-	/*if (Hflag)
-	{
-		if ((*input).State(INPUT_ID::UP).first == 1 && (*input).State(INPUT_ID::UP).second == 0)
-		{
-
-			if (HP < 99)
-			{
-				HP++;
-			}
-		}
-		if ((*input).State(INPUT_ID::DOWN).first == 1 && (*input).State(INPUT_ID::DOWN).second == 0)
-		{
-			if (HP > bHP)
-			{
-				HP--;
-			}
-		}
-		if ((*input).State(INPUT_ID::RIGHT).first == 1 && (*input).State(INPUT_ID::RIGHT).second == 0)
-		{
-			Hflag = false;
-		}
-	}*/
 	if (HP < 10)
 	{
 		DrawGraph(295, 70, IMAGE_ID("”Žš")[HP], true);
@@ -231,28 +209,6 @@ void ResultScene::Status(void)
 			DrawGraph(310, 70, IMAGE_ID("”Žš")[x], true);
 		}
 
-	/*if (Sflag)
-	{
-		if ((*input).State(INPUT_ID::UP).first == 1 && (*input).State(INPUT_ID::UP).second == 0)
-		{
-
-			if (STR < 99)
-			{
-				STR++;
-			}
-		}
-		if ((*input).State(INPUT_ID::DOWN).first == 1 && (*input).State(INPUT_ID::DOWN).second == 0)
-		{
-			if (STR > bSTR)
-			{
-				STR--;
-			}
-		}
-		if ((*input).State(INPUT_ID::RIGHT).first == 1 && (*input).State(INPUT_ID::RIGHT).second == 0)
-		{
-			Sflag = false;
-		}
-	}*/
 	if (STR < 10)
 	{
 		DrawGraph(295, 130, IMAGE_ID("”Žš")[STR], true);
@@ -301,6 +257,56 @@ void ResultScene::Status(void)
 
 		DrawGraph(295, 130, IMAGE_ID("”Žš")[y], true);
 		DrawGraph(310, 130, IMAGE_ID("”Žš")[x], true);
+	}
+
+	if (SP < 10)
+	{
+		DrawGraph(575 - 10, 0, IMAGE_ID("”Žš")[SP], true);
+	}
+	else
+	{
+		if (SP >= 10 && SP < 20)
+		{
+			a = 10;
+		}
+		if (SP >= 20 && SP < 30)
+		{
+			a = 20;
+		}
+		if (SP >= 30 && SP < 40)
+		{
+			a = 30;
+		}
+		if (SP >= 40 && SP < 50)
+		{
+			a = 40;
+		}
+		if (SP >= 50 && SP < 60)
+		{
+			a = 50;
+		}
+		if (SP >= 60 && SP < 70)
+		{
+			a = 60;
+		}
+		if (SP >= 70 && SP < 80)
+		{
+			a = 70;
+		}
+		if (SP >= 80 && SP < 90)
+		{
+			a = 80;
+		}
+		if (SP >= 90 && SP < 700)
+		{
+			a = 90;
+		}
+
+		x = SP - a;
+		y = (SP - x) / 10;
+
+		DrawGraph(575 - 10, 0, IMAGE_ID("”Žš")[y], true);
+		DrawGraph(590 - 10, 0, IMAGE_ID("”Žš")[x], true);
 	}
 }
 
@@ -354,6 +360,21 @@ void ResultScene::Init(void)
 	DrawGraph(335, 23 + 60, IMAGE_ID("•¶Žš")[28], true);
 	DrawGraph(335, 0 + 120, IMAGE_ID("•¶Žš")[27], true);
 	DrawGraph(335, 23 + 120, IMAGE_ID("•¶Žš")[28], true);
+
+	// STATUS
+	DrawGraph(380, 0, IMAGE_ID("•¶Žš")[18], true);
+	DrawGraph(395, 0, IMAGE_ID("•¶Žš")[19], true);
+	DrawGraph(410, 0, IMAGE_ID("•¶Žš")[0], true);
+	DrawGraph(425, 0, IMAGE_ID("•¶Žš")[19], true);
+	DrawGraph(440, 0, IMAGE_ID("•¶Žš")[20], true);
+	DrawGraph(455, 0, IMAGE_ID("•¶Žš")[18], true);
+	// POINT
+	DrawGraph(485 - 10, 0, IMAGE_ID("•¶Žš")[15], true);
+	DrawGraph(500 - 10, 0, IMAGE_ID("•¶Žš")[14], true);
+	DrawGraph(515 - 10, 0, IMAGE_ID("•¶Žš")[8], true);
+	DrawGraph(530 - 10, 0, IMAGE_ID("•¶Žš")[13], true);
+	DrawGraph(545 - 10, 0, IMAGE_ID("•¶Žš")[19], true);
+	DrawGraph(560 - 10, 0, IMAGE_ID("•¶Žš")[26], true);
 
 	// ˜g
 	// DrawGraph(200, 50, IMAGE_ID("˜g")[0], true);

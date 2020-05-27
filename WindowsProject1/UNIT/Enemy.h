@@ -6,14 +6,14 @@ class Enemy :
 {
 public:
 	Enemy();
-	Enemy(Vector2 position, Vector2 size, int hitpoint, int strength);
+	Enemy(Vector2 pos, Vector2 size, int HP, int STR, int SP);
 	~Enemy();
 
-	UNIT GetUnitType(void) { return UNIT::ENEMY; }
+	UNIT GetUnitType(void) { return UNIT::WATERING_SPIDER; }
 	void UpData(std::vector<shared_Obj> objList);
 	COMMON GetCom(void) { return com; }
 	PLAYER_STATUS GetPStatas(void) { return pData; }
-	ENEMY_STATUS GetEStatas(void) { return eData; }
+	ENEMY_STATUS GetEStatus(void) { return eData; }
 
 private:
 	bool Init(void);
