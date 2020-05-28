@@ -13,12 +13,7 @@ TitleScene::~TitleScene()
 
 unique_Base TitleScene::UpData(unique_Base own)
 {
-	(*input).UpData();
-
-	SetMouseDispFlag(true);
-	GetMousePoint(&mousePos.x, &mousePos.y);
-	mputOld = mput;
-	mput = GetMouseInput();
+	Mouse();
 
 	Init();
 

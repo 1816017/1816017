@@ -8,6 +8,7 @@
 GameScene::GameScene()
 {
 	Load();
+	Status();
 	Init();
 }
 
@@ -17,11 +18,7 @@ GameScene::~GameScene()
 
 unique_Base GameScene::UpData(unique_Base own)
 {
-	(*input).UpData();
-	SetMouseDispFlag(true);
-	GetMousePoint(&mousePos.x, &mousePos.y);
-	mputOld = mput;
-	mput = GetMouseInput();
+	Mouse();
 
 	DrawGraph(Apos.x, Apos.y, IMAGE_ID("bg")[0], true);
 	DrawGraph(Bpos.x, Bpos.y, IMAGE_ID("bg")[0], true);
@@ -41,10 +38,26 @@ unique_Base GameScene::UpData(unique_Base own)
 	{
 		SP = SP + eData.SP[1];
 	}
+
+	if (pData.STR > 2)
+	{
+		WSpider.pos = { 600,270 };
+		WSpider.size = { 50,30 };
+	}
+	if (pData.STR > 4)
+	{
+		WSpider2.pos = { 600,270 };
+		WSpider2.size = { 50,30 };
+	}
+
 	Draw();
 
-	Apos.x--;
-	Bpos.x--;
+	pSpeed = pData.speed;
+	if (pData.speed)
+	{
+		Apos.x--;
+		Bpos.x--;
+	}
 
 	if (Apos.x <= -600)
 	{
@@ -86,9 +99,7 @@ unique_Base GameScene::UpData(unique_Base own)
 
 bool GameScene::Init(void)
 {
-	objList.emplace_back(new Player(Vector2(0, 228), Vector2(100, 72), HP, STR));
-	objList.emplace_back(new Enemy(Vector2(600, 260), Vector2(60, 40), 5, 1, 1));
-	objList.emplace_back(new Enemy2(Vector2(500, 260), Vector2(60, 40), 10, 1, 1));
+	objList.emplace_back(new Player(Vector2(0, 228), Vector2(100, 72), HP, STR, pSpeed));
 
 	return true;
 }
@@ -97,11 +108,20 @@ void GameScene::Draw(void)
 {
 	if (eData.HP[0] <= 0)
 	{
-		objList.emplace_back(new Enemy(Vector2(600, 260), Vector2(60, 40), 5, 1, 1));
+		objList.emplace_back(new Enemy(WSpider.pos, WSpider.size, 5, 1, 1));
 	}
 
 	if (eData.HP[1] <= 0)
 	{
-		objList.emplace_back(new Enemy2(Vector2(600, 260), Vector2(60, 40), 10, 2, 1));
+		objList.emplace_back(new Enemy2(WSpider2.pos, WSpider2.size, 10, 2, 1));
 	}
+}
+
+void GameScene::Status(void)
+{
+	pSpeed = true;
+	WSpider.pos = { 600,260 };
+	WSpider.size = { 60,40 };
+	WSpider2.pos = { 600,260 };
+	WSpider2.size = { 60,40 };
 }

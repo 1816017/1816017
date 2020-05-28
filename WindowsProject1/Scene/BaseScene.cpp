@@ -10,8 +10,6 @@ BaseScene::BaseScene()
 	mousePos = { 0,0 };
 	mput = false;
 	mputOld = false;
-
-	input = std::make_unique<KeyState>();
 }
 
 void BaseScene::Save(void)
@@ -51,4 +49,12 @@ void BaseScene::Load(void)
 		fread(&SP, sizeof(SP), 1, file);
 	}
 	fclose(file);
+}
+
+void BaseScene::Mouse(void)
+{
+	SetMouseDispFlag(true);
+	GetMousePoint(&mousePos.x, &mousePos.y);
+	mputOld = mput;
+	mput = GetMouseInput();
 }

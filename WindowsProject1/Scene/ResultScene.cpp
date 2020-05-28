@@ -15,59 +15,9 @@ ResultScene::~ResultScene()
 
 unique_Base ResultScene::UpData(unique_Base own)
 {
-	(*input).UpData();
-
+	Mouse();
 	Init();
 	Status();
-	SetMouseDispFlag(true);
-	GetMousePoint(&mousePos.x, &mousePos.y);
-	mputOld = mput;
-	mput = GetMouseInput();
-
-	if ((*input).State(INPUT_ID::DOWN).first == 1 && (*input).State(INPUT_ID::DOWN).second == 0)
-	{
-		count++;
-		if (count > 3)
-		{
-			count = 0;
-		}
-	}
-	if ((*input).State(INPUT_ID::UP).first == 1 && (*input).State(INPUT_ID::UP).second == 0)
-	{
-		count--;
-		if (count < 0)
-		{
-			count = 3;
-		}
-	}
-	if (count == 0)
-	{
-		DrawGraph(225, 70, IMAGE_ID("•¶Žš")[29], true);
-	}
-	if (count == 1)
-	{
-		DrawGraph(210, 130, IMAGE_ID("•¶Žš")[29], true);
-	}
-	if (count == 2)
-	{
-		DrawGraph(215, 210, IMAGE_ID("•¶Žš")[29], true);
-
-		if ((*input).State(INPUT_ID::SPACE).first == 1 && (*input).State(INPUT_ID::SPACE).second == 0)
-		{
-			Save();
-			return std::make_unique<GameScene>();
-		}
-	}
-	if (count == 3)
-	{
-		DrawGraph(170, 250, IMAGE_ID("•¶Žš")[29], true);
-
-		if ((*input).State(INPUT_ID::SPACE).first == 1 && (*input).State(INPUT_ID::SPACE).second == 0)
-		{
-			Save();
-			return std::make_unique<TitleScene>();
-		}
-	}
 
 	if (cnt > 1)
 	{
@@ -375,7 +325,4 @@ void ResultScene::Init(void)
 	DrawGraph(530 - 10, 0, IMAGE_ID("•¶Žš")[13], true);
 	DrawGraph(545 - 10, 0, IMAGE_ID("•¶Žš")[19], true);
 	DrawGraph(560 - 10, 0, IMAGE_ID("•¶Žš")[26], true);
-
-	// ˜g
-	// DrawGraph(200, 50, IMAGE_ID("˜g")[0], true);
 }

@@ -2,7 +2,6 @@
 #include <memory>
 #include <list>
 #include <DxLib.h>
-#include <WindowsProject1/Input/KeyState.h>
 #include <WindowsProject1/common/Image.h>
 
 enum class SCENE_ID // enum¸×½
@@ -29,6 +28,7 @@ public:
 	void Save(void);
 	void Load(void);
 
+	void Mouse(void);
 protected:
 	int HP;
 	int bHP;
@@ -47,5 +47,4 @@ protected:
 	Vector2 Bpos;
 
 	std::list<shared_Scene> sceneList;	// Ø½Ä‰»
-	std::unique_ptr<InputState> input;		// ·°ˆ—
 };

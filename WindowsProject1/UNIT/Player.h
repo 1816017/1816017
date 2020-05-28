@@ -6,7 +6,7 @@ class Player :
 {
 public:
 	Player();
-	Player(Vector2 pos, Vector2 size, int HP, int STR);
+	Player(Vector2 pos, Vector2 size, int HP, int STR, bool _speed);
 	~Player();
 
 	UNIT GetUnitType(void) { return UNIT::PLAYER; }
@@ -21,7 +21,6 @@ private:
 	void Draw(void);
 	bool Init(void);
 
-	bool attackFlag;
 	bool flag;
 
 	COMMON eCom[ENEMY_MAX];

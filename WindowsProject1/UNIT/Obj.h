@@ -36,6 +36,7 @@ typedef struct {
 typedef struct {
 	int HP;
 	int STR;
+	bool speed;
 }PLAYER_STATUS;
 
 typedef struct {
@@ -75,15 +76,18 @@ protected:
 	void SetAlive(bool alive) { com.alive = alive; }		// alive‚Ì¾¯ÄŠÖ”
 	void SetDeath(bool death) { com.death = death; }		// death‚Ì¾¯ÄŠÖ”
 	bool DeathPur(void);	// ¶€ˆ—
+	void Mouse(void);
 
 	int animcount;	// ±ÆÒ°¼®İ¶³İÄ”
 	int a;
 	int x;
 	int y;
 	int cnt;
+	int count;
 
 	bool mput;
 	bool mputOld;
+	bool attackFlag;
 
 	Vector2 mousePos;
 

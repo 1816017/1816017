@@ -11,10 +11,7 @@ OperationScene::~OperationScene()
 
 unique_Base OperationScene::UpData(unique_Base own)
 {
-	SetMouseDispFlag(true);
-	GetMousePoint(&mousePos.x, &mousePos.y);
-	mputOld = mput;
-	mput = GetMouseInput();
+	Mouse();
 
 	Init();
 
@@ -35,6 +32,8 @@ unique_Base OperationScene::UpData(unique_Base own)
 
 void OperationScene::Init(void)
 {
+	DrawGraph(0, 0, IMAGE_ID("ê‡ñæ")[0], true);
+
 	//RETURN
 	DrawGraph(463, 260, IMAGE_ID("ï∂éö")[17], true);
 	DrawGraph(478, 260, IMAGE_ID("ï∂éö")[4], true);

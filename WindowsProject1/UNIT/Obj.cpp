@@ -6,10 +6,12 @@ Obj::Obj()
 	com.death = false;
 	mput = false;
 	mputOld = false;
+	attackFlag = false;
 	animkey = ANIM::NORMAL;
 	animcount = 0;
 	animframe = 0;
 	cnt = 0;
+	count = 0;
 }
 
 Obj::~Obj()
@@ -77,4 +79,12 @@ bool Obj::DeathPur(void)
 		com.death = true;
 	}
 	return false;
+}
+
+void Obj::Mouse(void)
+{
+	SetMouseDispFlag(true);
+	GetMousePoint(&mousePos.x, &mousePos.y);
+	mputOld = mput;
+	mput = GetMouseInput();
 }
