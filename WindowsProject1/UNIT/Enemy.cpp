@@ -42,7 +42,15 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 			eData.STR[1] = data->GetEStatus().STR[1];
 			eData.SP[1] = data->GetEStatus().SP[1];
 		}
+		if (data->GetUnitType() == UNIT::DEMON)
+		{
+			eData.HP[3] = data->GetEStatus().HP[3];
+			eData.STR[3] = data->GetEStatus().STR[3];
+			eData.SP[3] = data->GetEStatus().SP[3];
+		}
 	}
+
+	DrawBox(com.pos.x, com.pos.y - 20, com.pos.x + (eData.HP[0] * 10), com.pos.y - 10, 0xff0000, true);
 
 	AnimKey(ANIM::RUN);
 
@@ -60,7 +68,7 @@ void Enemy::UpData(std::vector<shared_Obj> objList)
 	if (com.pos.x + com.size.x > mousePos.x - 5 && com.pos.x < mousePos.x + 5
 		&& com.pos.y + com.size.y >mousePos.y - 5 && com.pos.y < mousePos.y + 5)
 	{
-		if (cnt > 45)
+		if (cnt > 44)
 		{
 			if ((mput & MOUSE_INPUT_LEFT) == 1 && (mputOld & MOUSE_INPUT_LEFT) == 0)
 			{

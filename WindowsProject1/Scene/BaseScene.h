@@ -9,6 +9,7 @@ enum class SCENE_ID // enum¸×½
 	TITLE,
 	OPERATION,
 	GAME,	// GameScene
+	BOSS,
 	RESULT,
 	MAX
 };

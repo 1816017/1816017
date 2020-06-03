@@ -1,26 +1,26 @@
-#include <WindowsProject1/UNIT/Enemy2.h>
+#include <WindowsProject1/UNIT/Enemy3.h>
 
-Enemy2::Enemy2()
+Enemy3::Enemy3()
 {
 }
 
-Enemy2::Enemy2(Vector2 pos, Vector2 size, int HP, int STR, int SP)
+Enemy3::Enemy3(Vector2 pos, Vector2 size, int HP, int STR, int SP)
 {
 	com.pos = pos;
 	com.size = size;
-	eData.HP[1] = HP;
-	eData.STR[1] = STR;
-	eData.SP[1] = SP;
+	eData.HP[3] = HP;
+	eData.STR[3] = STR;
+	eData.SP[3] = SP;
 
 	cnt = 80;
 	Init();
 }
 
-Enemy2::~Enemy2()
+Enemy3::~Enemy3()
 {
 }
 
-void Enemy2::UpData(std::vector<shared_Obj> objList)
+void Enemy3::UpData(std::vector<shared_Obj> objList)
 {
 	Mouse();
 
@@ -42,17 +42,17 @@ void Enemy2::UpData(std::vector<shared_Obj> objList)
 			eData.STR[0] = data->GetEStatus().STR[0];
 			eData.SP[0] = data->GetEStatus().SP[0];
 		}
-		if (data->GetUnitType() == UNIT::DEMON)
+		if (data->GetUnitType() == UNIT::WATERING_SPIDER2)
 		{
-			eData.HP[3] = data->GetEStatus().HP[0];
-			eData.STR[3] = data->GetEStatus().STR[0];
-			eData.SP[3] = data->GetEStatus().SP[0];
+			eData.HP[1] = data->GetEStatus().HP[0];
+			eData.STR[1] = data->GetEStatus().STR[0];
+			eData.SP[1] = data->GetEStatus().SP[0];
 		}
 	}
 
-	DrawBox(com.pos.x, com.pos.y - 20, com.pos.x + (eData.HP[1] * 5), com.pos.y - 10, 0xff0000, true);
+	DrawBox(com.pos.x, com.pos.y - 20, com.pos.x + (eData.HP[3] / 2), com.pos.y - 10, 0xff0000, true);
 
-	AnimKey(ANIM::RUN);
+	AnimKey(ANIM::NORMAL);
 
 	if (pData.HP > 0)
 	{
@@ -82,30 +82,27 @@ void Enemy2::UpData(std::vector<shared_Obj> objList)
 	{
 		if (count > 30)
 		{
-			com.pos.x += 100;
-			eData.HP[1] -= pData.STR;
+			com.pos.x += 50;
+			eData.HP[3] -= pData.STR;
 			cnt = 0;
 			attackFlag = false;
 		}
 	}
 
-	if (eData.HP[1] <= 0)
+	if (eData.HP[3] <= 0)
 	{
 		com.alive = false;
 	}
-
-	// DrawFormatString(0, 60, GetColor(255, 255, 255), "HP : %d", eData.HP[1]);
 
 	cnt++;
 	count++;
 }
 
-bool Enemy2::Init(void)
+bool Enemy3::Init(void)
 {
 	data.reserve(2);
-	data.emplace_back(IMAGE_ID("enemy2")[0], 20);
-	data.emplace_back(IMAGE_ID("enemy2")[1], 40);
-	SetAnim(ANIM::RUN, data);
+	data.emplace_back(IMAGE_ID("enemy3")[0], 10);
+	SetAnim(ANIM::NORMAL, data);
 
 	return true;
 }

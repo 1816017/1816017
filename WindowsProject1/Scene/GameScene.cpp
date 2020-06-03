@@ -3,11 +3,17 @@
 #include <WindowsProject1/UNIT/Player.h>
 #include <WindowsProject1/UNIT/Enemy.h>
 #include <WindowsProject1/UNIT/Enemy2.h>
+#include <WindowsProject1/UNIT/Enemy3.h>
 #include <WindowsProject1/Scene/ResultScene.h>
+#include <WindowsProject1/Scene/BossScene.h>
 
 GameScene::GameScene()
 {
 	Load();
+	mapPos = { 0,0 };
+	bCnt = 0;
+	pCnt = 0;
+	dCnt = 0;
 	Status();
 	Init();
 }
@@ -30,13 +36,17 @@ unique_Base GameScene::UpData(unique_Base own)
 		pData = data->GetPStatus();
 		eData = data->GetEStatus();
 	}
-	if (eData.HP[0] <= 0)
+	if (eData.HP[0] <= 0 && bCnt == 1)
 	{
 		SP = SP + eData.SP[0];
 	}
-	if (eData.HP[1] <= 0)
+	if (eData.HP[1] <= 0 && pCnt == 1)
 	{
 		SP = SP + eData.SP[1];
+	}
+	if (eData.HP[3] <= 0 && dCnt == 1)
+	{
+		SP = SP + eData.SP[3];
 	}
 
 	if (pData.STR > 2)
@@ -55,6 +65,7 @@ unique_Base GameScene::UpData(unique_Base own)
 	pSpeed = pData.speed;
 	if (pData.speed)
 	{
+		mapPos.x--;
 		Apos.x--;
 		Bpos.x--;
 	}
@@ -68,8 +79,15 @@ unique_Base GameScene::UpData(unique_Base own)
 		Bpos.x = 600;
 	}
 
+	if (mapPos.x < -3000)
+	{
+		Save();
+		return std::make_unique<BossScene>();
+	}
+
 	if (pData.HP <= 0)
 	{
+		mapPos.x = 0;
 		// GAME
 		DrawGraph(0 + 240, 150, IMAGE_ID("•¶Žš")[6], true);
 		DrawGraph(15 + 240, 150, IMAGE_ID("•¶Žš")[0], true);
@@ -94,6 +112,25 @@ unique_Base GameScene::UpData(unique_Base own)
 			[](shared_Obj& itr) {return (*itr).isDeath(); }),	// ‹U‚Ì’l‚ð^‚Å•Ô‚·
 		objList.end());
 
+	DrawFormatString(0, 60, GetColor(255, 255, 255), "MposX : %d", mapPos.x);
+
+	if (eData.HP[0] > 0)
+	{
+		bCnt = 0;
+	}
+	if (eData.HP[1] > 0)
+	{
+		pCnt = 0;
+	}
+	if (eData.HP[3] > 0)
+	{
+		dCnt = 0;
+	}
+
+	bCnt++;
+	pCnt++;
+	dCnt++;
+
 	return std::move(own);
 }
 
@@ -106,14 +143,22 @@ bool GameScene::Init(void)
 
 void GameScene::Draw(void)
 {
-	if (eData.HP[0] <= 0)
+	if (eData.HP[0] <= 0 && bCnt > 30)
 	{
 		objList.emplace_back(new Enemy(WSpider.pos, WSpider.size, 5, 1, 1));
 	}
 
-	if (eData.HP[1] <= 0)
+	if (eData.HP[1] <= 0 && pCnt > 50)
 	{
 		objList.emplace_back(new Enemy2(WSpider2.pos, WSpider2.size, 10, 2, 1));
+	}
+
+	if (mapPos.x < -2500)
+	{
+		if (eData.HP[3] <= 0 && dCnt > 100)
+		{
+			objList.emplace_back(new Enemy3(Vector2(600, 245), Vector2(58, 55), 200, 20, 0));
+		}
 	}
 }
 

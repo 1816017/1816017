@@ -3,6 +3,7 @@
 #include <WindowsProject1/Scene/TitleScene.h>
 #include <WindowsProject1/Scene/GameScene.h>
 #include <WindowsProject1/Scene/ResultScene.h>
+#include <WindowsProject1/Scene/BossScene.h>
 #include <WindowsProject1/common/Image.h>
 
 std::unique_ptr<SceneMng, SceneMng::SceneMngDelete> SceneMng::s_Instance(new SceneMng);
@@ -54,8 +55,11 @@ void SceneMng::ImageID(void)
 	lpImage.GetID("play_death", "image/death.png", { 7,1 }, { 100,72 });
 	lpImage.GetID("enemy", "image/enemy.png", { 1,2 }, { 60,40 });
 	lpImage.GetID("enemy2", "image/enemy2.png", { 1,2 }, { 60,40 });
-	lpImage.GetID("ê‡ñæ", "image/ê‡ñæ.png", { 1,1 }, { 600,300 });
+	lpImage.GetID("enemy3", "image/enemy3.png", { 1,1 }, { 58,55 });
 	lpImage.GetID("boss", "image/BOSS.png", { 1,1 }, { 171,165 });
+	lpImage.GetID("rock", "image/rock.png", { 1,1 }, { 48,48 });
+	lpImage.GetID("fire", "image/fire.png", { 1,1 }, { 85,30 });
+	lpImage.GetID("ê‡ñæ", "image/ê‡ñæ.png", { 1,1 }, { 600,300 });
 	lpImage.GetID("ï∂éö", "image/alphabet.png", { 7,5 }, { 15,21 });
 	lpImage.GetID("êîéö", "image/number.png", { 10,1 }, { 15,21 });
 }

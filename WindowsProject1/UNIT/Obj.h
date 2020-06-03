@@ -12,6 +12,10 @@ enum class UNIT
 	PLAYER,	// ’∆Øƒ:Ãﬂ⁄≤‘∞
 	WATERING_SPIDER,  // ’∆Øƒ:¥»–∞(Ç∂ÇÂÇ§ÇÎÇÆÇ‡)
 	WATERING_SPIDER2,  // ’∆Øƒ:¥»–∞2(Ç∂ÇÂÇ§ÇÎÇÆÇ‡2)
+	DEMON,
+	BOSS,
+	ROCK,
+	FIRE,
 	MAX
 };
 
@@ -24,7 +28,8 @@ enum class ANIM
 	MAX
 };
 
-#define ENEMY_MAX 2
+#define ENEMY_MAX 4
+#define ATTACK_MAX 2
 
 typedef struct {
 	Vector2 pos;
@@ -45,6 +50,11 @@ typedef struct {
 	int SP[ENEMY_MAX];
 }ENEMY_STATUS;
 
+typedef struct {
+	int HP[ATTACK_MAX];
+	int STR[ATTACK_MAX];
+}ATTACK_STATUS;
+
 class Obj;
 using shared_Obj = std::shared_ptr<Obj>;	// è»ó™
 using AnimVector = std::vector<std::pair<int, int>>;	// first:âÊëúID,second:frameêî
@@ -63,6 +73,7 @@ public:
 	virtual COMMON GetCom(void) { return com; }
 	virtual PLAYER_STATUS GetPStatus(void) { return pData; }
 	virtual ENEMY_STATUS GetEStatus(void) { return eData; }
+	virtual ATTACK_STATUS GetAStatus(void) { return aData; }
 	bool AnimKey(ANIM key);		// ±∆“∞ºÆ›∑∞ÇÃæØƒä÷êî
 	const ANIM AnimKey(void) const;			//±∆“∞ºÆ›∑∞ÇÃéÊìæ
 
@@ -94,6 +105,7 @@ protected:
 	AnimVector data;
 	PLAYER_STATUS pData;
 	ENEMY_STATUS eData;
+	ATTACK_STATUS aData;
 	COMMON com;
 
 	std::list<shared_Obj> objList;	// ÿΩƒâª

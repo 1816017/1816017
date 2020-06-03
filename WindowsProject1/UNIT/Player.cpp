@@ -36,14 +36,35 @@ void Player::UpData(std::vector<shared_Obj> objList)
 	
 	for (auto data : objList)
 	{
-		eData = data->GetEStatus();
 		if (data->GetUnitType() == UNIT::WATERING_SPIDER)
 		{
+			eData.STR[0] = data->GetEStatus().STR[0];
 			eCom[0] = data->GetCom();
 		}
 		if (data->GetUnitType() == UNIT::WATERING_SPIDER2)
 		{
+			eData.STR[1] = data->GetEStatus().STR[1];
 			eCom[1] = data->GetCom();
+		}
+		if (data->GetUnitType() == UNIT::DEMON)
+		{
+			eData.STR[3] = data->GetEStatus().STR[3];
+			eCom[3] = data->GetCom();
+		}
+		if (data->GetUnitType() == UNIT::BOSS)
+		{
+			eData.STR[2] = data->GetEStatus().STR[2];
+			eCom[2] = data->GetCom();
+		}
+		if (data->GetUnitType() == UNIT::ROCK)
+		{
+			aData.STR[0] = data->GetAStatus().STR[0];
+			aCom[0] = data->GetCom();
+		}
+		if (data->GetUnitType() == UNIT::FIRE)
+		{
+			aData.STR[1] = data->GetAStatus().STR[1];
+			aCom[1] = data->GetCom();
 		}
 	}
 
@@ -56,7 +77,6 @@ void Player::UpData(std::vector<shared_Obj> objList)
 			pData.HP -= eData.STR[0];
 		}
 	}
-
 	if (com.pos.x + com.size.x - 19 > eCom[1].pos.x && com.pos.x + 20 < eCom[1].pos.x + eCom[1].size.x
 		&& com.pos.y + com.size.y > eCom[1].pos.y && com.pos.y < eCom[1].pos.y + eCom[1].size.y)
 	{
@@ -64,6 +84,33 @@ void Player::UpData(std::vector<shared_Obj> objList)
 		{
 			cnt = 0;
 			pData.HP -= eData.STR[1];
+		}
+	}
+	if (com.pos.x + com.size.x > aCom[0].pos.x && com.pos.x + 20 < aCom[0].pos.x + aCom[0].size.x
+		&& com.pos.y + com.size.y > aCom[0].pos.y && com.pos.y + 20 < aCom[0].pos.y + aCom[0].size.y)
+	{
+		if (pData.HP > 0)
+		{
+			cnt = 0;
+			pData.HP -= aData.STR[0];
+		}
+	}
+	if (com.pos.x + com.size.x > aCom[1].pos.x && com.pos.x + 20 < aCom[1].pos.x + aCom[1].size.x
+		&& com.pos.y + com.size.y > aCom[1].pos.y && com.pos.y + 20 < aCom[1].pos.y + aCom[1].size.y)
+	{
+		if (pData.HP > 0)
+		{
+			cnt = 0;
+			pData.HP -= aData.STR[1];
+		}
+	}
+	if (com.pos.x + com.size.x - 19 > eCom[3].pos.x && com.pos.x + 20 < eCom[3].pos.x + eCom[3].size.x
+		&& com.pos.y + com.size.y > eCom[3].pos.y && com.pos.y < eCom[3].pos.y + eCom[3].size.y)
+	{
+		if (pData.HP > 0)
+		{
+			cnt = 0;
+			pData.HP -= eData.STR[3];
 		}
 	}
 

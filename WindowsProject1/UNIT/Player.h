@@ -14,6 +14,7 @@ public:
 	COMMON GetCom(void) { return com; }
 	PLAYER_STATUS GetPStatas(void) { return pData; }
 	ENEMY_STATUS GetEStatus(void) { return eData; }
+	ATTACK_STATUS GetAStatus(void) { return aData; }
 
 	void Control(void);
 
@@ -24,5 +25,6 @@ private:
 	bool flag;
 
 	COMMON eCom[ENEMY_MAX];
+	COMMON aCom[ATTACK_MAX];
 };
 

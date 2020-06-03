@@ -1,0 +1,39 @@
+﻿  Enemy3.cpp
+  BossScene.cpp
+  Boss.cpp
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Boss.cpp(61,74): error C2664:  'int DxLib::DrawFormatString(int,int,unsigned int,const TCHAR *,...)': 引数 4 を 'const char [8]' から 'const TCHAR *' へ変換できません。
+  Enemy2.cpp
+  OperationScene.cpp
+  BaseScene.cpp
+  Image.cpp
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Boss.cpp(61,52): message :  指示された型は関連がありません。変換には reinterpret_cast、C スタイル キャストまたは関数スタイルのキャストが必要です。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(25,48): error C2664:  'int DxLib::LoadGraph(const TCHAR *,int)': 引数 1 を 'const _Elem *' から 'const TCHAR *' へ変換できません。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(25,48): error C2664:         with
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(25,48): error C2664:         [
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(25,48): error C2664:             _Elem=char
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(25,48): error C2664:         ]
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(25,46): message :  指示された型は関連がありません。変換には reinterpret_cast、C スタイル キャストまたは関数スタイルのキャストが必要です。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(35,3): error C2664:  'int DxLib::LoadDivGraph(const TCHAR *,int,int,int,int,int,int *,int)': 引数 1 を 'const _Elem *' から 'const TCHAR *' へ変換できません。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(35,3): error C2664:         with
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(35,3): error C2664:         [
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(35,3): error C2664:             _Elem=char
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(35,3): error C2664:         ]
+  ResultScene.cpp
+  TitleScene.cpp
+  Enemy.cpp
+  GameScene.cpp
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\common\Image.cpp(35,30): message :  指示された型は関連がありません。変換には reinterpret_cast、C スタイル キャストまたは関数スタイルのキャストが必要です。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\Scene\GameScene.cpp(111,73): error C2664:  'int DxLib::DrawFormatString(int,int,unsigned int,const TCHAR *,...)': 引数 4 を 'const char [11]' から 'const TCHAR *' へ変換できません。
+  main.cpp
+  Obj.cpp
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\Scene\GameScene.cpp(111,51): message :  指示された型は関連がありません。変換には reinterpret_cast、C スタイル キャストまたは関数スタイルのキャストが必要です。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Obj.cpp(28,30): warning C4018:  '<=': signed と unsigned の数値を比較しようとしました。
+  Player.cpp
+  SceneMng.cpp
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\UNIT\Obj.cpp(36,17): warning C4018:  '>=': signed と unsigned の数値を比較しようとしました。
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\Scene\SceneMng.cpp(35,39): error C2665:  'SetWindowTextW': 2 オーバーロードのどれも、すべての引数の型を変換できませんでした
+D:\DxLib\DxFunctionWin.h(69,14): message :  'int DxLib::SetWindowTextW(const TCHAR *)' の可能性があります
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\Scene\SceneMng.cpp(35,39): message :  引数リスト '(const char [22])' を一致させようとしているとき
+  Vector2.cpp
+  WindowsProject1.cpp
+C:\Users\ui\source\repos\WindowsProject1\WindowsProject1\Scene\SceneMng.cpp(40,12): warning C4305:  'return': 'int' から 'bool' へ切り詰めます。

@@ -1,15 +1,15 @@
 #pragma once
 #include <WindowsProject1/UNIT/Obj.h>
 
-class Enemy2 :
+class Enemy3 :
 	public Obj
 {
 public:
-	Enemy2();
-	Enemy2(Vector2 pos, Vector2 size, int HP, int STR, int SP);
-	~Enemy2();
+	Enemy3();
+	Enemy3(Vector2 pos, Vector2 size, int HP, int STR, int SP);
+	~Enemy3();
 
-	UNIT GetUnitType(void) { return UNIT::WATERING_SPIDER2; }
+	UNIT GetUnitType(void) { return UNIT::DEMON; }
 	void UpData(std::vector<shared_Obj> objList);
 	COMMON GetCom(void) { return com; }
 	PLAYER_STATUS GetPStatas(void) { return pData; }

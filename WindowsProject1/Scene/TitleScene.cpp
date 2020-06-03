@@ -18,7 +18,7 @@ unique_Base TitleScene::UpData(unique_Base own)
 	Init();
 
 	HP = 3;
-	bHP = 10;
+	bHP = 3;
 	STR = 1;
 	bSTR = 1;
 	SP = 0;

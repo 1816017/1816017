@@ -14,6 +14,7 @@ public:
 	COMMON GetCom(void) { return com; }
 	PLAYER_STATUS GetPStatas(void) { return pData; }
 	ENEMY_STATUS GetEStatus(void) { return eData; }
+	ATTACK_STATUS GetAStatus(void) { return aData; }
 
 private:
 	bool Init(void);
